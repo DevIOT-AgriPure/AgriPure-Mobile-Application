@@ -49,7 +49,7 @@ class _LoginViewState extends State<LoginView> {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(bottom: 10.0),
-                  child: Text("Username",
+                  child: Text("Email",
                     style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -67,7 +67,7 @@ class _LoginViewState extends State<LoginView> {
                       controller: _usernameController,
                       decoration: InputDecoration(
                         border: InputBorder.none,
-                        hintText: "Enter username",
+                        hintText: "Enter email",
                       ),
                     ),
                   ),
@@ -149,7 +149,7 @@ class _LoginViewState extends State<LoginView> {
 
                             AuthService.logIn(_usernameController.text, _passwordController.text).then((_) =>{
                               Navigator.pushReplacement(context,
-                                  MaterialPageRoute(builder: (context) => HomeScreen(index: 0,))),
+                                  MaterialPageRoute(builder: (context) => const HomeScreen(index: 0,))),
                             }).catchError((error){
                               String errorMessage = "Ocurrió un error durante el inicio de sesión";
                               errorMessage = error.toString();

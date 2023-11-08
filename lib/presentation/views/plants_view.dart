@@ -17,14 +17,14 @@ class _PlantsViewState extends State<PlantsView> {
   Future<String> obtenerSaludo() async {
     var horaActual = DateTime.now().hour;
     String saludo;
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String userName = prefs.getString('userName')?? "Invitado";
+    //SharedPreferences prefs = await SharedPreferences.getInstance();
+    //String name = prefs.getString('name')?? "Invitado";
     if(horaActual >= 0 && horaActual < 12){
-      saludo = "Good Morning $userName";
+      saludo = "Good Morning";
     } else if(horaActual >=12 && horaActual < 18){
-      saludo = "Good Afternoon $userName";
+      saludo = "Good Afternoon";
     } else {
-      saludo = "Good Night $userName";
+      saludo = "Good Night";
     }
     return saludo;
   }
