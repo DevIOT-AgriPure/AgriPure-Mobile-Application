@@ -1,6 +1,4 @@
 import 'package:agripure_mobile/presentation/views/register.dart';
-import 'package:agripure_mobile/presentation/views/signin_farmer.dart';
-import 'package:agripure_mobile/presentation/views/signin_view.dart';
 import 'package:flutter/material.dart';
 import 'package:sliding_switch/sliding_switch.dart';
 import 'package:agripure_mobile/presentation/views/login_view.dart';
@@ -60,8 +58,8 @@ class _AuthScreenState extends State<AuthScreen> {
                         _isSignIn = value;
                       });
                     },
-                    textOff: "Log in",
-                    textOn: "Sign in",
+                    textOff: "Login",
+                    textOn: "Register",
                     width: 320,
                     height: 45,
                     colorOn: Colors.white,

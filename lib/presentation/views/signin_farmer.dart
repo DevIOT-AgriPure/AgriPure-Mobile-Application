@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
+import '../../services/auth_service.dart';
+import '../screens/auth_screen.dart';
 
 class SignInFarmer extends StatefulWidget {
   const SignInFarmer({super.key});
@@ -242,35 +246,33 @@ class _SignInFarmerState extends State<SignInFarmer> {
                             onPressed: (){
                               setState(() {
                                 _isLoading = true;
+                              });                              
+                              AuthService.registerFarmer(_emailController.text, _passwordController.text, _nameController.text , _descriptionController.text , _imageUrlController.text, _locationController.text, "FARMER", int.parse(_plantIdController.text)).then((_) {
+                                String message = "New farmer created. Log In";
+                                Fluttertoast.showToast(
+                                    msg: message,
+                                    toastLength: Toast.LENGTH_LONG,
+                                    backgroundColor: const Color.fromRGBO(
+                                        47, 152, 48, 1.0),
+                                    textColor: Colors.white,
+                                    fontSize: 18.0
+                                );
+                              }).catchError((error){
+                                String errorMessage = "Error register farmer. ";
+                                errorMessage = error.toString();
+                                Fluttertoast.showToast(
+                                    msg: errorMessage,
+                                    toastLength: Toast.LENGTH_SHORT,
+                                    backgroundColor: const Color.fromRGBO(
+                                        222, 15, 15, 1.0),
+                                    textColor: Colors.white,
+                                    fontSize: 18.0
+                                );
+                              }).whenComplete(() {
+                                  setState(() {
+                                    _isLoading = false;
+                                });
                               });
-
-                              //AuthService.signIn(_emailController.text, _passwordController.text, _nameController.text, _usernameController.text).then((_) {
-                              //  String message = "New user created. Log In";
-                              //  Fluttertoast.showToast(
-                              //      msg: message,
-                              //      toastLength: Toast.LENGTH_LONG,
-                              //      backgroundColor: const Color.fromRGBO(
-                              //          47, 152, 48, 1.0),
-                              //      textColor: Colors.white,
-                              //      fontSize: 18.0
-                              //  );
-                              //  Navigator.push(context, MaterialPageRoute(builder: (context) => AuthScreen()));
-                              //}).catchError((error){
-                              //  String errorMessage = "Ocurrió un error durante el inicio de sesión";
-                              //  errorMessage = error.toString();
-                              //  Fluttertoast.showToast(
-                              //      msg: errorMessage,
-                              //      toastLength: Toast.LENGTH_SHORT,
-                              //      backgroundColor: const Color.fromRGBO(
-                              //          222, 15, 15, 1.0),
-                              //      textColor: Colors.white,
-                              //      fontSize: 18.0
-                              //  );
-                              //}).whenComplete(() {
-                              //    setState(() {
-                              //      _isLoading = false;
-                              //  });
-                              //});
                             },
                             child: _isLoading
                                 ? Container(

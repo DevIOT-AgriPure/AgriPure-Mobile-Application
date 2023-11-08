@@ -1,4 +1,8 @@
+import 'package:agripure_mobile/services/auth_service.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
+import '../screens/auth_screen.dart';
 
 class SignInSpecialist extends StatefulWidget {
   const SignInSpecialist({super.key});
@@ -336,34 +340,33 @@ class _SignInSpecialistState extends State<SignInSpecialist> {
                               setState(() {
                                 _isLoading = true;
                               });
-
-                              //AuthService.signIn(_emailController.text, _passwordController.text, _nameController.text, _usernameController.text).then((_) {
-                              //  String message = "New user created. Log In";
-                              //  Fluttertoast.showToast(
-                              //      msg: message,
-                              //      toastLength: Toast.LENGTH_LONG,
-                              //      backgroundColor: const Color.fromRGBO(
-                              //          47, 152, 48, 1.0),
-                              //      textColor: Colors.white,
-                              //      fontSize: 18.0
-                              //  );
-                              //  Navigator.push(context, MaterialPageRoute(builder: (context) => AuthScreen()));
-                              //}).catchError((error){
-                              //  String errorMessage = "Ocurrió un error durante el inicio de sesión";
-                              //  errorMessage = error.toString();
-                              //  Fluttertoast.showToast(
-                              //      msg: errorMessage,
-                              //      toastLength: Toast.LENGTH_SHORT,
-                              //      backgroundColor: const Color.fromRGBO(
-                              //          222, 15, 15, 1.0),
-                              //      textColor: Colors.white,
-                              //      fontSize: 18.0
-                              //  );
-                              //}).whenComplete(() {
-                              //    setState(() {
-                              //      _isLoading = false;
-                              //  });
-                              //});
+                              
+                              AuthService.registerSpecialist(_emailController.text, _passwordController.text, _nameController.text, _descriptionController.text, _imageUrlController.text, _locationController.text, "SPECIALIST", int.parse(_plantIdController.text) , _expertiseController.text, _contactEmailController.text, _areasOfFocusController.text).then((_) {
+                                String message = "New specialist created. Log In";
+                                Fluttertoast.showToast(
+                                    msg: message,
+                                    toastLength: Toast.LENGTH_LONG,
+                                    backgroundColor: const Color.fromRGBO(
+                                        47, 152, 48, 1.0),
+                                    textColor: Colors.white,
+                                    fontSize: 18.0
+                                );
+                              }).catchError((error){
+                                String errorMessage = "Error created specialist.";
+                                errorMessage = error.toString();
+                                Fluttertoast.showToast(
+                                    msg: errorMessage,
+                                    toastLength: Toast.LENGTH_SHORT,
+                                    backgroundColor: const Color.fromRGBO(
+                                        222, 15, 15, 1.0),
+                                    textColor: Colors.white,
+                                    fontSize: 18.0
+                                );
+                              }).whenComplete(() {
+                                  setState(() {
+                                    _isLoading = false;
+                                });
+                              });
                             },
                             child: _isLoading
                                 ? Container(
