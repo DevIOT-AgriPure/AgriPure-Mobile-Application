@@ -37,9 +37,9 @@ class AuthService{
     }
   }
 
-  static Future<void> logIn(String username, String password) async {
+  static Future<void> logIn(String email, String password) async {
     try {
-      var url = Uri.parse('https://agripure-mobile-service.onrender.com/auth/login');
+      var url = Uri.parse('http://nifty-jet-404014.rj.r.appspot.com/auth/login');
       Map<String, String> headers = {
         "Accept": "application/json",
         "Content-Type": "application/json",
@@ -47,17 +47,15 @@ class AuthService{
       var response = await http.post(
         url,
         headers: headers,
-        body: jsonEncode({'password': password, 'userName': username},),
+        body: jsonEncode({'password': password, 'email': email},),
       );
 
       if (response.statusCode == 200) {
         var responseBody = json.decode(response.body);
         var token = responseBody['token'];
-        var responseUsername = responseBody['userName'];
 
         SharedPreferences prefs = await SharedPreferences.getInstance();
         await prefs.setString('token', token);
-        await prefs.setString('userName', responseUsername);
       } else if (response.statusCode == 401) {
         return Future.error('Invalid Credentials');
       } else {

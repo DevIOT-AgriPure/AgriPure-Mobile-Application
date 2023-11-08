@@ -1,3 +1,5 @@
+import 'package:agripure_mobile/presentation/views/register.dart';
+import 'package:agripure_mobile/presentation/views/signin_farmer.dart';
 import 'package:agripure_mobile/presentation/views/signin_view.dart';
 import 'package:flutter/material.dart';
 import 'package:sliding_switch/sliding_switch.dart';
@@ -79,7 +81,7 @@ class _AuthScreenState extends State<AuthScreen> {
           ),
 
           Expanded(
-            child: _isSignIn ? const SignInView() : const LoginView(),
+            child: _isSignIn ? const RegisterView() : const LoginView(),
           )
 
         ],

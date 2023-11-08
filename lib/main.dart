@@ -20,17 +20,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget initialScreen = const AuthScreen();
-    if (storedToken != null) {
-      bool isTokenExpired = JwtDecoder.isExpired(storedToken!);
-
-      if (!isTokenExpired) {
-        initialScreen = const HomeScreen(index: 0);
-      } else {
-        initialScreen = const AuthScreen();
-      }
-    } else {
-      initialScreen = const AuthScreen();
-    }
+    //if (storedToken != null) {
+    //  //bool isTokenExpired = JwtDecoder.isExpired(storedToken!);
+//
+    //  if (!isTokenExpired) {
+    //    initialScreen = const HomeScreen(index: 0);
+    //  } else {
+    //    initialScreen = const AuthScreen();
+    //  }
+    //} else {
+    //  initialScreen = const AuthScreen();
+    //}
 
     return MaterialApp(
       title: 'AgriPure App',
