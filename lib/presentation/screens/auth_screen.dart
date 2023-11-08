@@ -58,7 +58,7 @@ class _AuthScreenState extends State<AuthScreen> {
                         _isSignIn = value;
                       });
                     },
-                    textOff: "Login",
+                    textOff: "Log In",
                     textOn: "Register",
                     width: 320,
                     height: 45,
