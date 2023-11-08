@@ -37,6 +37,7 @@ class AuthService{
     }
   }
 
+  
   static Future<void> logIn(String email, String password) async {
     try {
       var url = Uri.parse('http://nifty-jet-404014.rj.r.appspot.com/auth/login');

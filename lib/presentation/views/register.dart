@@ -1,3 +1,5 @@
+import 'package:agripure_mobile/presentation/views/signin_farmer.dart';
+import 'package:agripure_mobile/presentation/views/signin_specialist.dart';
 import 'package:flutter/material.dart';
 
 class RegisterView extends StatelessWidget {
@@ -7,7 +9,6 @@ class RegisterView extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Registro de Usuarios',
       home: UserTypeSelection(),
     );
   }
@@ -42,6 +43,7 @@ class UserTypeSelection extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () {
                     // Navegar a la vista de Farmer
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const SignInFarmer()));
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color.fromRGBO(47, 152, 48, 1.0),
@@ -55,6 +57,8 @@ class UserTypeSelection extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () {
                     // Navegar a la vista de Specialist
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const SignInSpecialist()));
+
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color.fromRGBO(47, 152, 48, 1.0),                shape: RoundedRectangleBorder(
@@ -72,30 +76,3 @@ class UserTypeSelection extends StatelessWidget {
   }
 }
 
-class SignInFarmer extends StatelessWidget {
-  const SignInFarmer({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color.fromRGBO(40, 40, 40, 1.0),
-      body: Center(
-        child: const Text('Vista de registro para Farmer'),
-      ),
-    );
-  }
-}
-
-class SignInSpecialist extends StatelessWidget {
-  const SignInSpecialist({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color.fromRGBO(40, 40, 40, 1.0),
-      body: Center(
-        child: const Text('Vista de registro para Specialist'),
-      ),
-    );
-  }
-}
