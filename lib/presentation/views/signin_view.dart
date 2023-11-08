@@ -158,33 +158,33 @@ class _SignInViewState extends State<SignInView> {
                                 _isLoading = true;
                               });
 
-                              AuthService.signIn(_emailController.text, _passwordController.text, _nameController.text, _usernameController.text).then((_) {
-                                String message = "New user created. Log In";
-                                Fluttertoast.showToast(
-                                    msg: message,
-                                    toastLength: Toast.LENGTH_LONG,
-                                    backgroundColor: const Color.fromRGBO(
-                                        47, 152, 48, 1.0),
-                                    textColor: Colors.white,
-                                    fontSize: 18.0
-                                );
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => AuthScreen()));
-                              }).catchError((error){
-                                String errorMessage = "Ocurrió un error durante el inicio de sesión";
-                                errorMessage = error.toString();
-                                Fluttertoast.showToast(
-                                    msg: errorMessage,
-                                    toastLength: Toast.LENGTH_SHORT,
-                                    backgroundColor: const Color.fromRGBO(
-                                        222, 15, 15, 1.0),
-                                    textColor: Colors.white,
-                                    fontSize: 18.0
-                                );
-                              }).whenComplete(() {
-                                  setState(() {
-                                    _isLoading = false;
-                                });
-                              });
+                              //AuthService.signIn(_emailController.text, _passwordController.text, _nameController.text, _usernameController.text).then((_) {
+                              //  String message = "New user created. Log In";
+                              //  Fluttertoast.showToast(
+                              //      msg: message,
+                              //      toastLength: Toast.LENGTH_LONG,
+                              //      backgroundColor: const Color.fromRGBO(
+                              //          47, 152, 48, 1.0),
+                              //      textColor: Colors.white,
+                              //      fontSize: 18.0
+                              //  );
+                              //  Navigator.push(context, MaterialPageRoute(builder: (context) => AuthScreen()));
+                              //}).catchError((error){
+                              //  String errorMessage = "Ocurrió un error durante el inicio de sesión";
+                              //  errorMessage = error.toString();
+                              //  Fluttertoast.showToast(
+                              //      msg: errorMessage,
+                              //      toastLength: Toast.LENGTH_SHORT,
+                              //      backgroundColor: const Color.fromRGBO(
+                              //          222, 15, 15, 1.0),
+                              //      textColor: Colors.white,
+                              //      fontSize: 18.0
+                              //  );
+                              //}).whenComplete(() {
+                              //    setState(() {
+                              //      _isLoading = false;
+                              //  });
+                              //});
                             },
                             child: _isLoading
                                 ? Container(

@@ -224,7 +224,7 @@ class _SignInSpecialistState extends State<SignInSpecialist> {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 15.0),
                       child: TextField(
-                        controller: _descriptionController,
+                        controller: _plantIdController,
                         decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: "Enter plant id",
