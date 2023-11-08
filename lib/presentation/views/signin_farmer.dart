@@ -14,6 +14,7 @@ class _SignInFarmerState extends State<SignInFarmer> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
   final TextEditingController _locationController = TextEditingController();
+  final TextEditingController _plantIdController = TextEditingController();
   bool _isLoading = false;
 
   @override
@@ -202,10 +203,7 @@ class _SignInFarmerState extends State<SignInFarmer> {
                   const SizedBox(
                     height: 8,
                   ),
-                  const SizedBox(
-                    height: 8,
-                  ),
-
+                 
                   Padding(
                     padding: const EdgeInsets.only(bottom: 10.0),
                     child: Text("Plant",
@@ -223,7 +221,7 @@ class _SignInFarmerState extends State<SignInFarmer> {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 15.0),
                       child: TextField(
-                        controller: _descriptionController,
+                        controller: _plantIdController,
                         decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: "Enter plant id",
