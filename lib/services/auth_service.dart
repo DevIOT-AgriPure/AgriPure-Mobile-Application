@@ -1,6 +1,10 @@
 import 'dart:convert';
+import 'dart:io';
+import 'package:agripure_mobile/models/notification_model.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+
 
 class AuthService{
 
@@ -104,9 +108,9 @@ class AuthService{
         await prefs.setString('email', userProfile['email']);
         await prefs.setString('name', userProfile['name']);
         await prefs.setString('description', userProfile['description']);
-        await prefs.setString('accountId', userProfile['accountId']);
+        await prefs.setInt('accountId', userProfile['accountId']);
         await prefs.setString('type', userProfile['type']);
-        await prefs.setString('planId', userProfile['planId']);
+        await prefs.setInt('planId', userProfile['planId']);
         await prefs.setString('imageUrl', userProfile['imageUrl']);
         await prefs.setString('location', userProfile['location']);
       } else if (response.statusCode == 401) {
@@ -154,6 +158,17 @@ class AuthService{
       throw Exception('Error de red: $error');
     }
   }
+  
+  static Future<List<Noti>> getNotifications(int accountId) async {
+      final response = await http.get(Uri.parse('http://nifty-jet-404014.rj.r.appspot.com/api/v1/notifications/getByToAccountId/$accountId'));
+      if (response.statusCode == HttpStatus.ok) {
+        final notification = json.decode(response.body).cast<Map<String, dynamic>>();
+        return notification.map<Noti>((json) => Noti.fromJson(json)).toList();
+      } else {
+        throw Exception('Failed to load messages');
+      }
+    }
+
   
   static Future<Map<String, dynamic>> getProfileByAccountId(int accountId) async{
     var url = Uri.parse('http://nifty-jet-404014.rj.r.appspot.com/api/v1/profiles/getProfile/$accountId');
