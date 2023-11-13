@@ -1,6 +1,10 @@
 import 'dart:convert';
+import 'dart:io';
+import 'package:agripure_mobile/models/notification_model.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+
 
 class AuthService{
 
@@ -98,9 +102,17 @@ class AuthService{
       if (response.statusCode == 200) {
         var responseBody = json.decode(response.body);
         var token = responseBody['token'];
-
+        Map<String, dynamic> userProfile = await getProfileByEmail(email);
         SharedPreferences prefs = await SharedPreferences.getInstance();
         await prefs.setString('token', token);
+        await prefs.setString('email', userProfile['email']);
+        await prefs.setString('name', userProfile['name']);
+        await prefs.setString('description', userProfile['description']);
+        await prefs.setInt('accountId', userProfile['accountId']);
+        await prefs.setString('type', userProfile['type']);
+        await prefs.setInt('planId', userProfile['planId']);
+        await prefs.setString('imageUrl', userProfile['imageUrl']);
+        await prefs.setString('location', userProfile['location']);
       } else if (response.statusCode == 401) {
         return Future.error('Invalid Credentials');
       } else {
@@ -115,4 +127,63 @@ class AuthService{
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.remove('token');
   }
+
+  static Future<Map<String, dynamic>> getProfileByEmail(String email) async{
+    var url = Uri.parse('http://nifty-jet-404014.rj.r.appspot.com/api/v1/profiles/getProfileByEmail/$email');
+  try {
+    final response = await http.get(url);
+    if (response.statusCode == 200) {
+      Map<String, dynamic> jsonData = json.decode(response.body);
+      return jsonData;
+    } else {
+      throw Exception('Error de solicitud: ${response.statusCode}');
+    }
+  } catch (error) {
+    throw Exception('Error de red: $error');
+  }
+  }
+
+  static Future<Map<String, dynamic>> getAllNotificationsByToAccountId(int accountId) async{
+  //Retorna las notificaciones enviadas al accountId
+    var url = Uri.parse('http://nifty-jet-404014.rj.r.appspot.com/api/v1/notifications/getByToAccountId/$accountId');
+    try {
+      final response = await http.get(url);
+      if (response.statusCode == 200) {
+        Map<String, dynamic> jsonData = json.decode(response.body);
+        return jsonData;
+      } else {
+        throw Exception('Error de solicitud: ${response.statusCode}');
+      }
+    } catch (error) {
+      throw Exception('Error de red: $error');
+    }
+  }
+  
+  static Future<List<Noti>> getNotifications(int accountId) async {
+      final response = await http.get(Uri.parse('http://nifty-jet-404014.rj.r.appspot.com/api/v1/notifications/getByToAccountId/$accountId'));
+      if (response.statusCode == HttpStatus.ok) {
+        final notification = json.decode(response.body).cast<Map<String, dynamic>>();
+        return notification.map<Noti>((json) => Noti.fromJson(json)).toList();
+      } else {
+        throw Exception('Failed to load messages');
+      }
+    }
+
+  
+  static Future<Map<String, dynamic>> getProfileByAccountId(int accountId) async{
+    var url = Uri.parse('http://nifty-jet-404014.rj.r.appspot.com/api/v1/profiles/getProfile/$accountId');
+    try {
+      final response = await http.get(url);
+      if (response.statusCode == 200) {
+        Map<String, dynamic> jsonData = json.decode(response.body);
+        return jsonData;
+      } else {
+        throw Exception('Error de solicitud: ${response.statusCode}');
+      }
+    } catch (error) {
+      throw Exception('Error de red: $error');
+    }
+  }
+
+
 }

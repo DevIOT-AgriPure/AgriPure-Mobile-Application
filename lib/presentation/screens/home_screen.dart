@@ -1,5 +1,6 @@
 import 'package:agripure_mobile/presentation/views/calendar_view.dart';
 import 'package:agripure_mobile/presentation/views/identification_view.dart';
+import 'package:agripure_mobile/presentation/views/notifications_view.dart';
 import 'package:agripure_mobile/presentation/views/plants_view.dart';
 import 'package:agripure_mobile/presentation/views/settings_view.dart';
 import 'package:agripure_mobile/presentation/views/specialist_view.dart';
@@ -28,7 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
 
-    final screens = [const PlantsView(), const CalendarView(), const IdentificationView(), const SpecialistView(), const SettingsView()];
+    final screens = [const PlantsView(), const NotificationsView(), const IdentificationView(), const SpecialistView(), const SettingsView()];
 
     return Scaffold(
       appBar: AppBar(
@@ -59,9 +60,9 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
 
           BottomNavigationBarItem(
-              icon: Icon(Icons.calendar_month_outlined),
-              activeIcon: Icon(Icons.calendar_month),
-              label: "Calendar",
+              icon: Icon(Icons.notifications_on_outlined),
+              activeIcon: Icon(Icons.notifications),
+              label: "Notifications",
               backgroundColor: Colors.green
           ),
 
