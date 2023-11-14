@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:agripure_mobile/models/chat_model.dart';
 import 'package:agripure_mobile/models/notification_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -184,6 +185,17 @@ class AuthService{
       throw Exception('Error de red: $error');
     }
   }
+
+  static Future<List<Chat>> getcontactByFarmerId(int farmerId) async {
+    final response = await http.get(Uri.parse('http://nifty-jet-404014.rj.r.appspot.com/api/v1/contacts/contactByFarmerId/$farmerId'));
+      if (response.statusCode == HttpStatus.ok) {
+        final chat = json.decode(response.body).cast<Map<String, dynamic>>();
+        return chat.map<Chat>((json) => Chat.fromJson(json)).toList();
+      } else {
+        throw Exception('Failed to load messages');
+      }
+  }
+
 
 
 }
