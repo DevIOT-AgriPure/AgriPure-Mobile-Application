@@ -38,6 +38,7 @@ class ProfileActualizar {
 
 class Profile {
    int accountId;
+   String email;
    String name;
    String description;
    String imageUrl;
@@ -47,6 +48,7 @@ class Profile {
 
   Profile({
     required this.accountId,
+    required this.email,
     required this.name,
     required this.description,
     required this.imageUrl,
@@ -57,6 +59,7 @@ class Profile {
 
   Profile.fromJson(Map<String, dynamic> json):
       accountId = json['accountId'],
+      email = json['email'],
       name= json['name'],
       description= json['description'],
       imageUrl= json['imageUrl'],
@@ -66,6 +69,7 @@ class Profile {
 
   Map<String, dynamic> toJson() {
     return {
+      'email':email,
       'accountId': accountId,
       'name': name,
       'description': description,
