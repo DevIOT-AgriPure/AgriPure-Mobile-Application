@@ -172,7 +172,7 @@ class _PlantsViewState extends State<PlantsView> {
                                               borderRadius: BorderRadius
                                                   .circular(15),
                                               child: Image.network(
-                                                '${plant.image}',
+                                                '${plant.imageUrl}',
                                                 width: double.infinity,
                                                 height: 200,
                                                 fit: BoxFit.cover,)

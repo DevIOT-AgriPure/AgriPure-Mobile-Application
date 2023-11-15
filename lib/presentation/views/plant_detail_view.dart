@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:agripure_mobile/models/plant_model2.dart';
 import 'package:agripure_mobile/presentation/screens/home_screen.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
@@ -12,7 +13,7 @@ import '../../services/event_service.dart';
 import 'calendar_view.dart';
 
 class PlantDetailView extends StatefulWidget {
-  final Plant plant;
+  final Plant2 plant;
   const PlantDetailView({Key? key, required this.plant}) : super(key: key);
 
   @override
@@ -20,7 +21,7 @@ class PlantDetailView extends StatefulWidget {
 }
 
 class _PlantDetailViewState extends State<PlantDetailView> {
-  final Plant plant;
+  final Plant2 plant;
   _PlantDetailViewState(this.plant);
   DateTime today = DateTime.now();
 
@@ -75,7 +76,7 @@ class _PlantDetailViewState extends State<PlantDetailView> {
                   ),
                   ListTile(
                     leading: const Icon(Icons.check_circle, color: Colors.white,),
-                    title: Text('Scientifist Name: ${plant.scientifist_name}', style: TextStyle(
+                    title: Text('Scientifist Name: ${plant.scientificName}', style: TextStyle(
                         color: Colors.white,
                         fontSize: 17,
                         fontWeight: FontWeight.w300,
@@ -103,7 +104,7 @@ class _PlantDetailViewState extends State<PlantDetailView> {
 
                   ClipRRect(
                       borderRadius: BorderRadius.circular(15),
-                      child: Image.network('${plant.image}',
+                      child: Image.network('${plant.imageUrl}',
                         width: double.infinity,
                         height: 200,
                         fit: BoxFit.cover,)
@@ -123,7 +124,7 @@ class _PlantDetailViewState extends State<PlantDetailView> {
                     height: 12,
                   ),
 
-                  Text('Distance between: ${plant.distance_between}', style: TextStyle(
+                  Text('Distance between: ${plant.distanceBetweenPlants}', style: TextStyle(
                       color: Colors.white,
                       fontSize: 18,
                       fontWeight: FontWeight.w300,
@@ -145,7 +146,7 @@ class _PlantDetailViewState extends State<PlantDetailView> {
                     height: 10,
                   ),
 
-                  Text('Fertilization interval: ${plant.intervale_fert} days', style: TextStyle(
+                  Text('Ideal Planting Depth: ${plant.idealPlantingDepth} days', style: TextStyle(
                       color: Colors.white,
                       fontSize: 18,
                       fontWeight: FontWeight.w300,
@@ -156,7 +157,7 @@ class _PlantDetailViewState extends State<PlantDetailView> {
                     height: 10,
                   ),
 
-                  Text('Fumigation interval: ${plant.intervale_fumig} days', style: TextStyle(
+                  Text('Fumigation interval: ${plant.fertilizationAndFumigation} days', style: TextStyle(
                       color: Colors.white,
                       fontSize: 18,
                       fontWeight: FontWeight.w300,
@@ -176,10 +177,10 @@ class _PlantDetailViewState extends State<PlantDetailView> {
                           child: Text("Set Fertilization\n event", textAlign: TextAlign.center,),
                         ),
                         onPressed: () async{
-                          DateTime currentDate = today.add(Duration(days: plant.intervale_fert!.toInt()));
+                          DateTime currentDate = today.add(Duration(days: int.parse(plant.distanceBetweenPlants!)));
                           for (int i = 0; i < 3; i++){
                             await EventService.saveEvent(Event("Fertilization of ${plant.name}",0,DateFormat("yyyy-MM-dd").format(currentDate)));
-                            currentDate = currentDate.add(Duration(days: plant.intervale_fert!.toInt()));
+                            currentDate = currentDate.add(Duration(days: int.parse(plant.distanceBetweenPlants!)));
                           }
                           Fluttertoast.showToast(
                               msg: "Fertilization event created",
@@ -207,7 +208,7 @@ class _PlantDetailViewState extends State<PlantDetailView> {
                           DateTime currentDate = today;
                           for (int i = 0; i < 4; i++){
                             await EventService.saveEvent(Event("Fumigation of ${plant.name}",0,DateFormat("yyyy-MM-dd").format(currentDate)));
-                            currentDate = currentDate.add(Duration(days: plant.intervale_fumig!.toInt()));
+                            currentDate = currentDate.add(Duration(days: int.parse(plant.fertilizationAndFumigation!)));
                           }
                           Fluttertoast.showToast(
                               msg: "Fumigation event created",
@@ -273,7 +274,7 @@ class _PlantDetailViewState extends State<PlantDetailView> {
                     children: [
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 16.0),
-                        child: Text('${plant.info_distance_between}', style: TextStyle(
+                        child: Text('${plant.distanceBetweenPlants}', style: TextStyle(
                             color: Colors.white,
                             fontSize: 18,
                             fontWeight: FontWeight.w300
@@ -295,7 +296,7 @@ class _PlantDetailViewState extends State<PlantDetailView> {
                     children: [
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 16.0),
-                        child: Text('${plant.info_land_type}', style: TextStyle(
+                        child: Text('${plant.depth}', style: TextStyle(
                             color: Colors.white,
                             fontSize: 20,
                             fontWeight: FontWeight.w300
@@ -317,7 +318,7 @@ class _PlantDetailViewState extends State<PlantDetailView> {
                     children: [
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 16.0),
-                        child: Text('${plant.info_ideal_depth}', style: TextStyle(
+                        child: Text('${plant.depth}', style: TextStyle(
                             color: Colors.white,
                             fontSize: 20,
                             fontWeight: FontWeight.w300
@@ -339,7 +340,7 @@ class _PlantDetailViewState extends State<PlantDetailView> {
                     children: [
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 16.0),
-                        child: Text('${plant.info_fert_fumig}', style: TextStyle(
+                        child: Text('${plant.fertilizationAndFumigation}', style: TextStyle(
                             color: Colors.white,
                             fontSize: 20,
                             fontWeight: FontWeight.w300
