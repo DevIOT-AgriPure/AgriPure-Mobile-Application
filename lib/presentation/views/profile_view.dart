@@ -29,7 +29,7 @@ class _ProfileViewState extends State<ProfileView> {
   initialize() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     userId = prefs.getInt('accountId');
-    profile = await profileService?.getData(4);
+    profile = await profileService?.getData(userId!);
     setState(() {
       profile = profile;
       emailController.text = profile?.email??'';
@@ -72,8 +72,13 @@ class _ProfileViewState extends State<ProfileView> {
 
   @override
   Widget build(BuildContext context) {
+   
     //final String? image = user?.imageUrl;
     return Scaffold(
+      appBar: AppBar(
+        title: Text("AgriPure, your planting assistant", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),),
+        backgroundColor: Colors.green,
+        automaticallyImplyLeading: false,),
       backgroundColor: Color.fromRGBO(40, 40, 40, 1.0),
       body: SingleChildScrollView(
         child: Container(
@@ -84,11 +89,25 @@ class _ProfileViewState extends State<ProfileView> {
               const SizedBox(height: 55.0),
               Align(
                 alignment: Alignment.center,
-                child: CircleAvatar(
-                  radius: 50.0,
-                  backgroundImage: NetworkImage(profile!.imageUrl),
-                  ),
+                child: FutureBuilder(
+                  future: profileService?.getData(4),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      // Muestra una imagen de carga mientras se espera la respuesta del backend
+                      return CircularProgressIndicator();
+                    } else if (snapshot.hasError) {
+                      // Manejar errores
+                      return Text("Error: ${snapshot.error}");
+                    } else {
+                      // Muestra la imagen del perfil una vez que se carga
+                      return CircleAvatar(
+                        radius: 50.0,
+                        backgroundImage: NetworkImage(snapshot.data?.imageUrl ?? ''),
+                      );
+                    }
+                  },
                 ),
+              ),
               // ),
               const SizedBox(height: 16.0),
               Center(
@@ -105,11 +124,9 @@ class _ProfileViewState extends State<ProfileView> {
               
               const SizedBox(height: 16.0),
               buildTextField('Email', emailController),
-              //buildTextField('Password', passwordController),
               buildTextField('Description', descriptionController),
               buildTextField('Location', locationController),
               buildTextField('Type', rolController),
-              //buildTextField('BrithdayDate', birthdayDateController),
               const SizedBox(height: 16.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
