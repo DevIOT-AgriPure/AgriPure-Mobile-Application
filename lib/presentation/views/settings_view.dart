@@ -1,3 +1,5 @@
+import 'package:agripure_mobile/presentation/views/profile_view.dart';
+import 'package:agripure_mobile/services/profile_service.dart';
 import 'package:flutter/material.dart';
 import 'package:agripure_mobile/services/settings_service.dart';
 import 'package:agripure_mobile/services/auth_service.dart';
@@ -54,261 +56,8 @@ class _SettingsViewState extends State<SettingsView> {
               margin: EdgeInsets.symmetric(vertical: 10), // Ajuste del margen vertical
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  ExpansionTile(
-                    title: Text(
-                      "Profile Settings",
-                      textAlign: TextAlign.center, // Centrar el texto
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
-                    onExpansionChanged: (value) {
-                      setState(() {
-                        isExpanded = value;
-                      });
-                    },
-                    children: [
-                      if (isExpanded)
-                        ListTile(
-                          title: Text(
-                            "Change Email",
-                            textAlign: TextAlign.center, // Centrar el texto
-                            style: TextStyle(color: Colors.white),
-                          ),
-                          onTap: () {
-                            showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                String newEmail = '';
-                                String password = '';
-
-                                return AlertDialog(
-                                  title: Text(
-                                    "Change Email",
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: 'Montserrat',
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  backgroundColor: Color.fromRGBO(40, 40, 40, 1.0),
-                                  content: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Text(
-                                        "New Email Address",
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontFamily: 'Montserrat',
-                                        ),
-                                      ),
-                                      TextField(
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontFamily: 'Montserrat',
-                                        ),
-                                        decoration: InputDecoration(
-                                          fillColor: Colors.white,
-                                          hintText: "Enter your new email",
-                                          hintStyle: TextStyle(
-                                            color: Colors.white.withOpacity(0.5),
-                                            fontFamily: 'Montserrat',
-                                          ),
-                                        ),
-                                        onChanged: (value) {
-                                          newEmail = value;
-                                        },
-                                      ),
-                                    ],
-                                  ),
-                                  actions: [
-                                    ElevatedButton(
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
-                                      },
-                                      style: ElevatedButton.styleFrom(
-                                        primary: Colors.grey, // Color de fondo verde
-                                        onPrimary: Colors.white, // Color del texto en blanco
-                                      ),
-                                      child: Text(
-                                        "Cancel",
-                                        style: TextStyle(
-                                          fontFamily: 'Montserrat',
-                                        ),
-                                      ),
-                                    ),
-                                    ElevatedButton(
-                                      onPressed: () async {
-                                        await changeEmail(newEmail, password);
-                                        Navigator.of(context).pop();
-                                      },
-                                      style: ElevatedButton.styleFrom(
-                                        primary: Colors.green, // Color de fondo verde
-                                        onPrimary: Colors.white, // Color del texto en blanco
-                                      ),
-                                      child: Text(
-                                        "Change",
-                                        style: TextStyle(
-                                          fontFamily: 'Montserrat',
-                                          color: Colors.white.withOpacity(0.5),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                );
-                              },
-                            );
-                          },
-                        ),
-                      if (isExpanded)
-                        ListTile(
-                          title: Text(
-                            "Change Password",
-                            textAlign: TextAlign.center, // Centrar el texto
-                            style: TextStyle(color: Colors.white),
-                          ),
-                          onTap: () {
-                            showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                String currentPassword = '';
-                                String newPassword = '';
-
-                                return AlertDialog(
-                                  title: Text(
-                                    "Change Password",
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: 'Montserrat',
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  backgroundColor: Color.fromRGBO(40, 40, 40, 1.0),
-                                  content: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Text(
-                                        "Current Password",
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontFamily: 'Montserrat',
-                                        ),
-                                      ),
-                                      TextField(
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontFamily: 'Montserrat',
-                                        ),
-                                        decoration: InputDecoration(
-                                          fillColor: Colors.white,
-                                          hintText: "Current Password",
-                                          hintStyle: TextStyle(
-                                            color: Colors.white.withOpacity(0.5),
-                                            fontFamily: 'Montserrat',
-                                          ),
-                                        ),
-                                        obscureText: true,
-                                        onChanged: (value) {
-                                          currentPassword = value;
-                                        },
-                                      ),
-                                      SizedBox(height: 10),
-                                      Text(
-                                        "New Password",
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontFamily: 'Montserrat',
-                                        ),
-                                      ),
-                                      TextField(
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontFamily: 'Montserrat',
-                                        ),
-                                        decoration: InputDecoration(
-                                          fillColor: Colors.white,
-                                          hintText: "Enter New Password",
-                                          hintStyle: TextStyle(
-                                            color: Colors.white.withOpacity(0.5),
-                                            fontFamily: 'Montserrat',
-                                          ),
-                                        ),
-                                        obscureText: true,
-                                        onChanged: (value) {
-                                          newPassword = value;
-                                        },
-                                      ),
-                                      SizedBox(height: 10),
-                                      Text(
-                                        "Reenter new Password",
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontFamily: 'Montserrat',
-                                        ),
-                                      ),
-                                      TextField(
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontFamily: 'Montserrat',
-                                        ),
-                                        decoration: InputDecoration(
-                                          fillColor: Colors.white,
-                                          hintText: "Enter New Password",
-                                          hintStyle: TextStyle(
-                                            color: Colors.white.withOpacity(0.5),
-                                            fontFamily: 'Montserrat',
-                                          ),
-                                        ),
-                                        obscureText: true,
-                                      ),
-                                    ],
-                                  ),
-                                  actions: [
-                                    ElevatedButton(
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
-                                      },
-                                      style: ElevatedButton.styleFrom(
-                                        primary: Colors.grey, // Color de fondo verde
-                                        onPrimary: Colors.white, // Color del texto en blanco
-                                      ),
-                                      child: Text(
-                                        "Cancel",
-                                        style: TextStyle(
-                                          fontFamily: 'Montserrat',
-                                        ),
-                                      ),
-                                    ),
-                                    ElevatedButton(
-                                      onPressed: () async {
-                                        await changePassword(currentPassword, newPassword);
-                                        Navigator.of(context).pop();
-                                      },
-                                      style: ElevatedButton.styleFrom(
-                                        primary: Colors.green, // Color de fondo verde
-                                        onPrimary: Colors.white, // Color del texto en blanco
-                                      ),
-                                      child: Text(
-                                        "Change",
-                                        style: TextStyle(
-                                          fontFamily: 'Montserrat',
-                                          color: Colors.white.withOpacity(0.5),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                );
-                              },
-                            );
-                          },
-                        ),
-                    ],
-                  ),
+                children: [ 
+                  
                 ],
               ),
             ),
@@ -323,79 +72,55 @@ class _SettingsViewState extends State<SettingsView> {
             ),
 
             // "Sign Off"
-            Expanded(
-              child: GestureDetector(
-                onTap: () {
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return AlertDialog(
-                        title: Text(
-                          "Sign Off",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'Montserrat',
-                          ),
-                        ),
-                        content: Text(
-                          "¿Está seguro de que desea salir?",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontFamily: 'Montserrat',
-                          ),
-                        ),
-                        backgroundColor: Colors.grey[800],
-                        actions: <Widget>[
-                          TextButton(
-                            child: Text(
-                              "Cancelar",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontFamily: 'Montserrat',
-                              ),
-                            ),
-                            onPressed: () {
-                              Navigator.of(context).pop(); // Cierra el diálogo
-                            },
-                          ),
-                          TextButton(
-                            child: Text(
-                              "Aceptar",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontFamily: 'Montserrat',
-                              ),
-                            ),
-                            onPressed: () {
-                              AuthService.logOut().then((_) => {
-                                Navigator.pushReplacementNamed(context, '/auth')
-                              });
-                            },
-                          ),
-                        ],
-                      );
-                    },
-                  );
+            
+            SizedBox(height: 20),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => const ProfileView()));
                 },
-                child: Container(
-                  margin: EdgeInsets.only(top: 20),
-                  child: Text(
-                    "Sign Off",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                      fontFamily: 'Montserrat',
-                    ),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.transparent,
+                  foregroundColor: Colors.black, // Establece el color del texto en negro
+                  elevation: 0, // Elimina la sombra del botón
+                  side: BorderSide(color: Colors.white),
+                ),
+                child: Text(
+                  "Profile",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    fontFamily: 'Montserrat',
                   ),
                 ),
               ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  AuthService.logOut().then((_) => {
+                    Navigator.pushReplacementNamed(context, '/auth')
+                  });
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.transparent,
+                  foregroundColor: Colors.black,
+                  elevation: 0, // Elimina la sombra del botón
+                  side: const BorderSide(color: Colors.white),
+                ),
+                child: Text(
+                  "Sign Off",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    fontFamily: 'Montserrat',
+                  ),
+                ),
+              ),
+                        ],
+                      ),
+                    ),
+                  );
+                }
 }
