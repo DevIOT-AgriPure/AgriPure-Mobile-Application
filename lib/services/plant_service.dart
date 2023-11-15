@@ -80,25 +80,24 @@ class PlantService {
   static Future<void> savePlant(int plantId) async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      final token = prefs.getString('token');
-      final userName = prefs.getString('userName');
+      
+      final accountId = prefs.getInt('accountId');
 
-      var urlUser = Uri.parse('https://agripure-mobile-service.onrender.com/api/users/username/$userName');
+      var urlUser = Uri.parse('http://nifty-jet-404014.rj.r.appspot.com/api/v1/profiles/getProfile/$accountId');
 
       Map<String, String> headers = {
         "Accept": "application/json",
         "Content-Type": "application/json",
-        "Authorization": 'Bearer $token'
       };
 
       final responseUser = await http.get(urlUser, headers: headers);
 
-      final user = jsonDecode(responseUser.body);
-      final userId = user['id'];
+      final user = jsonDecode(responseUser.body); // retorna el json de la info del farmer
+      final userId = user['accountId']; //captura el accountId
 
-      var urlPlant = Uri.parse('https://agripure-mobile-service.onrender.com/api/users/$userId/assign/$plantId');
+      var urlPlant = Uri.parse('http://nifty-jet-404014.rj.r.appspot.com/api/v1/crops');
 
-      var response = await http.post(urlPlant, headers: headers);
+      var response = await http.post(urlPlant, headers: headers, body: jsonEncode({'farmerId': userId, 'plantId': plantId},));
 
       if (response.statusCode != 200) {
         return Future.error('Request error: ${response.statusCode}');
