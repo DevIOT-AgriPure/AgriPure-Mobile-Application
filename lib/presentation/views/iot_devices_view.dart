@@ -1,3 +1,4 @@
+import 'package:agripure_mobile/presentation/views/device_catalog_view.dart';
 import 'package:agripure_mobile/presentation/views/profile_view.dart';
 import 'package:agripure_mobile/presentation/views/specialist_detail_view.dart';
 import 'package:agripure_mobile/services/profile_service.dart';
@@ -21,6 +22,18 @@ class _IoTDevicesView extends State<IoTDevicesView> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Color.fromRGBO(40, 40, 40, 1.0),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () async {
+            var response = await Navigator.push(context,
+                MaterialPageRoute(builder: (context) => DeviceCatalogView()));
+
+            if(response == true) {
+              setState(() {});
+            }
+          },
+          child: Icon(Icons.add, color: Colors.white),
+          backgroundColor: Colors.deepOrange,
+        ),
         body: Padding(
           padding: const EdgeInsets.all(12),
           child: Column(
