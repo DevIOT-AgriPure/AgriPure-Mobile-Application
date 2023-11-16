@@ -1,4 +1,5 @@
 import 'package:agripure_mobile/presentation/views/calendar_view.dart';
+import 'package:agripure_mobile/presentation/views/farmers_view.dart';
 import 'package:agripure_mobile/presentation/views/identification_view.dart';
 import 'package:agripure_mobile/presentation/views/iot_devices_view.dart';
 import 'package:agripure_mobile/presentation/views/notifications_view.dart';
@@ -8,17 +9,17 @@ import 'package:agripure_mobile/presentation/views/specialist_view.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreenSpecialist extends StatefulWidget {
   final int index;
-  const HomeScreen({Key? key, required this.index}) : super(key: key);
+  const HomeScreenSpecialist({Key? key, required this.index}) : super(key: key);
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState(index);
+  State<HomeScreenSpecialist> createState() => _HomeScreenSpecialist(index);
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenSpecialist extends State<HomeScreenSpecialist> {
   final int index;
-  _HomeScreenState(this.index);
+  _HomeScreenSpecialist(this.index);
 
   int selectedIndex = 0;
 
@@ -31,6 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
     print(type);
   }
 
+
   @override
   void initState(){
     selectedIndex = index;
@@ -41,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
 
-    final screens = [const PlantsView(), const NotificationsView(), const IdentificationView(), const SpecialistView(), const IoTDevicesView(),const SettingsView()];
+    final screens = [const FarmersView(), const NotificationsView(),const SettingsView()];
 
     return Scaffold(
       appBar: AppBar(
@@ -65,9 +67,9 @@ class _HomeScreenState extends State<HomeScreen> {
         elevation: 20,
         items: const [
           BottomNavigationBarItem(
-              icon: Icon(Icons.yard_outlined),
-              activeIcon: Icon(Icons.yard),
-              label: "Plants",
+              icon: Icon(Icons.person_outline),
+              activeIcon: Icon(Icons.person),
+              label: "Farmers",
               backgroundColor: Colors.green
           ),
 
@@ -78,27 +80,6 @@ class _HomeScreenState extends State<HomeScreen> {
               backgroundColor: Colors.green
           ),
 
-          BottomNavigationBarItem(
-              icon: Icon(Icons.linked_camera_outlined),
-              activeIcon: Icon(Icons.linked_camera),
-              label: "Identify",
-              backgroundColor: Colors.green
-          ),
-
-          BottomNavigationBarItem(
-              icon: Icon(Icons.psychology_alt_outlined),
-              activeIcon: Icon(Icons.psychology_alt),
-              label: "Specialists",
-              backgroundColor: Colors.green
-          ),
-
-          BottomNavigationBarItem(
-              icon: Icon(Icons.cloud_circle_outlined),
-              activeIcon: Icon(Icons.cloud_circle),
-              label: "IoT Devices",
-              backgroundColor: Colors.green
-          ),
-          
           BottomNavigationBarItem(
               icon: Icon(Icons.settings_outlined),
               activeIcon: Icon(Icons.settings),

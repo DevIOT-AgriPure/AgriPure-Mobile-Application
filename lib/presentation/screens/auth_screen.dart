@@ -1,5 +1,6 @@
 import 'package:agripure_mobile/presentation/views/register.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sliding_switch/sliding_switch.dart';
 import 'package:agripure_mobile/presentation/views/login_view.dart';
 
@@ -12,6 +13,28 @@ class AuthScreen extends StatefulWidget {
 
 class _AuthScreenState extends State<AuthScreen> {
   bool _isSignIn = false;
+  Future<SharedPreferences>? _prefs;
+  String? type = "";
+
+  Future InitializeVar() async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.remove('token');
+    prefs.remove('email');
+    prefs.remove('name');
+    prefs.remove('description');
+    prefs.remove('accountId');
+    prefs.remove('type');
+    prefs.remove('planId');
+    prefs.remove('imageUrl');
+    prefs.remove('location');
+  }
+
+  @override
+  void initState(){
+    InitializeVar();
+    super.initState();
+  }
+
 
   @override
   Widget build(BuildContext context) {

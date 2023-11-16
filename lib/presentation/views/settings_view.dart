@@ -3,6 +3,7 @@ import 'package:agripure_mobile/services/profile_service.dart';
 import 'package:flutter/material.dart';
 import 'package:agripure_mobile/services/settings_service.dart';
 import 'package:agripure_mobile/services/auth_service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingsView extends StatefulWidget {
   const SettingsView({Key? key}) : super(key: key);
@@ -97,10 +98,23 @@ class _SettingsViewState extends State<SettingsView> {
               ),
               const SizedBox(height: 20),
               ElevatedButton(
-                onPressed: () {
+                onPressed: () async{
+                  SharedPreferences prefs = await SharedPreferences.getInstance();
+                  prefs.remove('token');
+                  prefs.remove('email');
+                  prefs.remove('name');
+                  prefs.remove('description');
+                  prefs.remove('accountId');
+                  prefs.remove('type');
+                  prefs.remove('planId');
+                  prefs.remove('imageUrl');
+                  prefs.remove('location');
+
+                  print(prefs.getString("type"));
                   AuthService.logOut().then((_) => {
                     Navigator.pushReplacementNamed(context, '/auth')
                   });
+
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.transparent,
