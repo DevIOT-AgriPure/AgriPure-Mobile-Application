@@ -1,5 +1,6 @@
 import 'package:agripure_mobile/presentation/views/farmers_view.dart';
 import 'package:agripure_mobile/presentation/views/notifications_view.dart';
+import 'package:agripure_mobile/presentation/views/project_view.dart';
 import 'package:agripure_mobile/presentation/views/settings_view.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -43,7 +44,7 @@ class _HomeScreenSpecialistState extends State<HomeScreenSpecialist> {
   @override
   Widget build(BuildContext context) {
 
-    final screens = [const FarmersView(), const NotificationsView(), const IoTDevicesView(),const SettingsView()];
+    final screens = [const FarmersView(), const NotificationsView(), const ProjectView(),const SettingsView()];
 
     return Scaffold(
       appBar: AppBar(
@@ -83,9 +84,9 @@ class _HomeScreenSpecialistState extends State<HomeScreenSpecialist> {
 
 
           BottomNavigationBarItem(
-              icon: Icon(Icons.cloud_circle_outlined),
-              activeIcon: Icon(Icons.cloud_circle),
-              label: "IoT Devices",
+              icon: Icon(Icons.calendar_month_outlined),
+              activeIcon: Icon(Icons.calendar_month),
+              label: "Projects",
               backgroundColor: Colors.green
           ),
           
