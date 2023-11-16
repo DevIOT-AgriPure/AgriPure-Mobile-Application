@@ -1,5 +1,6 @@
 import 'package:agripure_mobile/presentation/views/calendar_view.dart';
 import 'package:agripure_mobile/presentation/views/identification_view.dart';
+import 'package:agripure_mobile/presentation/views/iot_devices_view.dart';
 import 'package:agripure_mobile/presentation/views/notifications_view.dart';
 import 'package:agripure_mobile/presentation/views/plants_view.dart';
 import 'package:agripure_mobile/presentation/views/settings_view.dart';
@@ -29,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
 
-    final screens = [const PlantsView(), const NotificationsView(), const IdentificationView(), const SpecialistView(), const SettingsView()];
+    final screens = [const PlantsView(), const NotificationsView(), const IdentificationView(), const SpecialistView(), const IoTDevicesView(),const SettingsView()];
 
     return Scaffold(
       appBar: AppBar(
@@ -80,6 +81,13 @@ class _HomeScreenState extends State<HomeScreen> {
               backgroundColor: Colors.green
           ),
 
+          BottomNavigationBarItem(
+              icon: Icon(Icons.cloud_circle_outlined),
+              activeIcon: Icon(Icons.cloud_circle),
+              label: "IoT Devices",
+              backgroundColor: Colors.green
+          ),
+          
           BottomNavigationBarItem(
               icon: Icon(Icons.settings_outlined),
               activeIcon: Icon(Icons.settings),
