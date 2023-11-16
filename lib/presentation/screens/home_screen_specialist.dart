@@ -1,25 +1,25 @@
-import 'package:agripure_mobile/presentation/views/calendar_view.dart';
 import 'package:agripure_mobile/presentation/views/farmers_view.dart';
-import 'package:agripure_mobile/presentation/views/identification_view.dart';
-import 'package:agripure_mobile/presentation/views/iot_devices_view.dart';
 import 'package:agripure_mobile/presentation/views/notifications_view.dart';
-import 'package:agripure_mobile/presentation/views/plants_view.dart';
 import 'package:agripure_mobile/presentation/views/settings_view.dart';
-import 'package:agripure_mobile/presentation/views/specialist_view.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../views/identification_view.dart';
+import '../views/iot_devices_view.dart';
+import '../views/plants_view.dart';
+import '../views/specialist_view.dart';
 
 class HomeScreenSpecialist extends StatefulWidget {
   final int index;
   const HomeScreenSpecialist({Key? key, required this.index}) : super(key: key);
 
   @override
-  State<HomeScreenSpecialist> createState() => _HomeScreenSpecialist(index);
+  State<HomeScreenSpecialist> createState() => _HomeScreenSpecialistState(index);
 }
 
-class _HomeScreenSpecialist extends State<HomeScreenSpecialist> {
+class _HomeScreenSpecialistState extends State<HomeScreenSpecialist> {
   final int index;
-  _HomeScreenSpecialist(this.index);
+  _HomeScreenSpecialistState(this.index);
 
   int selectedIndex = 0;
 
@@ -43,7 +43,7 @@ class _HomeScreenSpecialist extends State<HomeScreenSpecialist> {
   @override
   Widget build(BuildContext context) {
 
-    final screens = [const FarmersView(), const NotificationsView(),const SettingsView()];
+    final screens = [const FarmersView(), const NotificationsView(), const IoTDevicesView(),const SettingsView()];
 
     return Scaffold(
       appBar: AppBar(
@@ -66,6 +66,7 @@ class _HomeScreenSpecialist extends State<HomeScreenSpecialist> {
         },
         elevation: 20,
         items: const [
+
           BottomNavigationBarItem(
               icon: Icon(Icons.person_outline),
               activeIcon: Icon(Icons.person),
@@ -80,6 +81,14 @@ class _HomeScreenSpecialist extends State<HomeScreenSpecialist> {
               backgroundColor: Colors.green
           ),
 
+
+          BottomNavigationBarItem(
+              icon: Icon(Icons.cloud_circle_outlined),
+              activeIcon: Icon(Icons.cloud_circle),
+              label: "IoT Devices",
+              backgroundColor: Colors.green
+          ),
+          
           BottomNavigationBarItem(
               icon: Icon(Icons.settings_outlined),
               activeIcon: Icon(Icons.settings),

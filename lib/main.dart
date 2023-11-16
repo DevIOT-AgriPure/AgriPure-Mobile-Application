@@ -1,5 +1,6 @@
 import 'package:agripure_mobile/presentation/screens/auth_screen.dart';
 import 'package:agripure_mobile/presentation/screens/home_screen.dart';
+import 'package:agripure_mobile/presentation/screens/home_screen_specialist.dart';
 import 'package:agripure_mobile/presentation/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
@@ -45,6 +46,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => initialScreen,
         '/splash': (context) => const SplashScreen(),
         '/home': (context) => const HomeScreen(index: 0),
+        '/homespecialist': (context) => const HomeScreenSpecialist(index: 0),
         '/auth': (context) => const AuthScreen()
       },
     );
