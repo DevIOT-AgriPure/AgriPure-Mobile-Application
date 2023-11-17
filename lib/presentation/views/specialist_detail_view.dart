@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../models/specialist_model.dart';
+import '../../models/specialist_model2.dart';
 
 class SpecialistDetailView extends StatefulWidget {
-  final Specialist specialist;
+  final Specialist2 specialist;
   const SpecialistDetailView({Key? key, required this.specialist}) : super(key: key);
 
   @override
@@ -12,7 +12,7 @@ class SpecialistDetailView extends StatefulWidget {
 }
 
 class _SpecialistDetailViewState extends State<SpecialistDetailView> {
-  final Specialist specialist;
+  final Specialist2 specialist;
   _SpecialistDetailViewState(this.specialist);
 
   bool _hasCallSupport = false;

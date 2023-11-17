@@ -5,34 +5,40 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 
-class SpecilistService {
-  static Future<List<Specialist>> getSpecilists() async {
+class SpecialistService {
+  static Future<List<Specialist2>> getAllSpecialists() async {
     var url = Uri.parse('http://nifty-jet-404014.rj.r.appspot.com/api/v1/specialists');
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    final farmerId = prefs.getInt('accountId');
-    var userUrl = Uri.parse('http://nifty-jet-404014.rj.r.appspot.com/api/v1/crops/$farmerId');
     Map<String, String> headers = {
       "Accept": "application/json",
       "Content-Type": "application/json",
-     // "Authorization": 'Bearer $token'
+      // "Authorization": 'Bearer $token'
     };
-    final responseUser = await http.get(userUrl, headers: headers); // Obtener el plantId de un Farmer
-    final userSpecialist = jsonDecode(responseUser.body); //json de los plantId
 
-    List<Specialist2> specialistList = [];
+    try {
+      final response = await http.get(url, headers: headers);
 
-    final response = await http.get(url, headers: headers); //retorna las plantas
+      if (response.statusCode == 200) {
+        final specialists = jsonDecode(response.body);
+        List<Specialist2> specialistList = [];
 
-    if (response.statusCode == 200) {
-      final specialists = jsonDecode(response.body); // retorna los json de los specialistas
-      for (var specialist in specialists) {
-        if (!userSpecialist.any((userSpecialist) => userSpecialist['specialistId'] == specialist['id'])) {
+        for (var specialist in specialists) {
           specialistList.add(Specialist2.fromJson(specialist));
         }
+
+        return specialistList;
+      } else {
+        // Handle non-200 status codes
+        print('Failed to fetch specialists. Status code: ${response.statusCode}');
+        return [];
       }
+    } catch (error) {
+      // Handle errors (e.g., print error, log it, or rethrow)
+      print('Error fetching specialists: $error');
+      // Return an empty list or rethrow the error, depending on your needs.
+      return [];
     }
-    return specialistList;
   }
+
 
 
 }
