@@ -1,29 +1,33 @@
 class Specialist2 {
-  int? id;
-  int? account_id;
-  String? expertise;
-  String? info_favorite_plants;
-  String? contactEmail;
-  String? areasOfFocus;
 
-
+  String? email;
+  String? name;
+  String? description;
+  String? imageUrl;
+  String? location;
+  String? type;
+  int? planId;
+  int? accountId;
 
   Specialist2({
-    required this.id,
-    required this.account_id,
-    required this.expertise,
-    required this.info_favorite_plants,
-    required this.contactEmail,
-    required this.areasOfFocus,
-
+    required this.email,
+    required this.name,
+    required this.description,
+    required this.imageUrl,
+    required this.location,
+    required this.type,
+    required this.planId,
+    required this.accountId,
   });
 
   Specialist2.fromJson(Map<String, dynamic> json){
-    id = json['id'];
-    account_id = json['name'];
-    expertise = json['description'];
-    info_favorite_plants = json['info_favorite_plants'];
-    contactEmail = json['contactEmail'];
-    areasOfFocus = json['areasOfFocus'];
+    email = json['email'];
+    name = json['name'];
+    description = json['description'];
+    imageUrl = json['imageUrl'];
+    location = json['location'];
+    type = json['type'];
+    planId = json['planId'];
+    accountId = json['accountId'];
   }
 }
