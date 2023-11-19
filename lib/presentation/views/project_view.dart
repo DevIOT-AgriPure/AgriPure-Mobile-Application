@@ -1,5 +1,3 @@
-
-import 'package:agripure_mobile/presentation/views/specialist_detail_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 

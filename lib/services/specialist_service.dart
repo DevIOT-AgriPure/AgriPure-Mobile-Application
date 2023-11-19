@@ -1,33 +1,44 @@
 import 'dart:convert';
 import 'package:agripure_mobile/models/specialist_model.dart';
+import 'package:agripure_mobile/models/specialist_model2.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 
-class SpecilistService {
-  static Future<List<Specialist>> getSpecilist() async {
-    var url = Uri.parse('https://agripure-mobile-service.onrender.com/api/specialists');
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    final token = prefs.getString('token');
+class SpecialistService {
+  static Future<List<Specialist2>> getAllSpecialists() async {
+    var url = Uri.parse('http://nifty-jet-404014.rj.r.appspot.com/api/v1/profiles/getSpecialists');
     Map<String, String> headers = {
       "Accept": "application/json",
       "Content-Type": "application/json",
-      "Authorization": 'Bearer $token'
+      // "Authorization": 'Bearer $token'
     };
 
-    List<Specialist> specialistList = [];
+    try {
+      final response = await http.get(url, headers: headers);
 
-    final response = await http.get(url, headers: headers);
+      if (response.statusCode == 200) {
+        final specialists = jsonDecode(response.body);
+        List<Specialist2> specialistList = [];
 
-    if (response.statusCode == 200) {
-      final specialists = jsonDecode(response.body);
+        for (var specialist in specialists) {
+          specialistList.add(Specialist2.fromJson(specialist));
+        }
 
-      for (var specialist in specialists) {
-        specialistList.add(Specialist.fromJson(specialist));
+        return specialistList;
+      } else {
+        // Handle non-200 status codes
+        print('Failed to fetch specialists. Status code: ${response.statusCode}');
+        return [];
       }
-
-      return specialistList;
+    } catch (error) {
+      // Handle errors (e.g., print error, log it, or rethrow)
+      print('Error fetching specialists: $error');
+      // Return an empty list or rethrow the error, depending on your needs.
+      return [];
     }
-    return specialistList;
   }
+
+
+
 }

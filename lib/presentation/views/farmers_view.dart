@@ -1,4 +1,3 @@
-import 'package:agripure_mobile/presentation/views/specialist_detail_view.dart';
 import 'package:agripure_mobile/services/specialist_service.dart';
 import 'package:flutter/material.dart';
 
@@ -77,7 +76,7 @@ class _FarmersViewState extends State<FarmersView> {
 
               FutureBuilder(
                   initialData: [],
-                  future:  SpecilistService.getSpecilist(),
+                  //future:  SpecilistService.getSpecilist(),
                   builder: (context, AsyncSnapshot<List> snapshot){
                     return Expanded(
                       child: ListView.builder(
@@ -124,9 +123,9 @@ class _FarmersViewState extends State<FarmersView> {
                                               Expanded(
                                                 child: ElevatedButton(
                                                   onPressed: (){
-                                                    Navigator.push(context, MaterialPageRoute(
-                                                        builder: (context) => SpecialistDetailView(specialist: specialist)
-                                                    ));
+                                                   //Navigator.push(context, MaterialPageRoute(
+                                                   //    builder: (context) => SpecialistDetailView(specialist: specialist)
+                                                   //));
                                                   },
                                                   style: ElevatedButton.styleFrom(
                                                     backgroundColor: Colors.orange, // Establecer el fondo anaranjado
