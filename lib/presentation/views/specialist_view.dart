@@ -1,5 +1,4 @@
-
-
+import 'package:agripure_mobile/presentation/views/add_specialist_view.dart';
 import 'package:agripure_mobile/services/specialist_service.dart';
 import 'package:flutter/material.dart';
 
@@ -17,6 +16,18 @@ class _SpecialistViewState extends State<SpecialistView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromRGBO(40, 40, 40, 1.0),
+      floatingActionButton: FloatingActionButton(
+          onPressed: () async {
+            var response = await Navigator.push(context,
+                MaterialPageRoute(builder: (context) => AddSpecialistView()));
+
+            if(response == true) {
+              setState(() {});
+            }
+          },
+          child: Icon(Icons.add, color: Colors.white),
+          backgroundColor: Colors.deepOrange,
+        ),
       body: Padding(
         padding: const EdgeInsets.all(12),
         child: Column(
