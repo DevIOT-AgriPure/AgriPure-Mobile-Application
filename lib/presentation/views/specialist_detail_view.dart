@@ -91,34 +91,34 @@ class _SpecialistDetailViewState extends State<SpecialistDetailView> {
                     height: 12,
                   ),
 
-                  Text('Telephone number: ${specialist.telephone_number}', style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w300,
-                      fontFamily: "Montserrat"
-                  ),),
+                  //Text('Telephone number: ${specialist.telephone_number}', style: TextStyle(
+                  //    color: Colors.white,
+                  //    fontSize: 18,
+                  //    fontWeight: FontWeight.w300,
+                  //    fontFamily: "Montserrat"
+                  //),),
 
                   SizedBox(
                     height: 10,
                   ),
 
-                  Text('Whatsapp Number: ${specialist.whatsapp_number}', style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w300,
-                      fontFamily: "Montserrat"
-                  ),),
+                  //Text('Whatsapp Number: ${specialist.whatsapp_number}', style: TextStyle(
+                  //    color: Colors.white,
+                  //    fontSize: 18,
+                  //    fontWeight: FontWeight.w300,
+                  //    fontFamily: "Montserrat"
+                  //),),
 
                   SizedBox(
                     height: 10,
                   ),
 
-                  Text('Email: ${specialist.contact_email}', style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w300,
-                      fontFamily: "Montserrat"
-                  ),),
+                 //Text('Email: ${specialist.contact_email}', style: TextStyle(
+                 //    color: Colors.white,
+                 //    fontSize: 18,
+                 //    fontWeight: FontWeight.w300,
+                 //    fontFamily: "Montserrat"
+                 //),),
 
                   SizedBox(
                     height: 20,
@@ -132,7 +132,7 @@ class _SpecialistDetailViewState extends State<SpecialistDetailView> {
                           child: ElevatedButton(
                             onPressed:  _hasCallSupport
                                 ? () => setState(() {
-                                        _launched = _makePhoneCall(specialist.whatsapp_number.toString());
+                                        //_launched = _makePhoneCall(specialist.whatsapp_number.toString());
                                   }) : null,
                             style: ElevatedButton.styleFrom(
                               foregroundColor: Colors.white,
@@ -165,7 +165,7 @@ class _SpecialistDetailViewState extends State<SpecialistDetailView> {
                               }
                               final Uri emailUri = Uri(
                                 scheme: "mailto",
-                                path: specialist.contact_email.toString(),
+                                //path: specialist.contact_email.toString(),
                                 query: encodeQueryParameters(<String, String>{
                                   "subject": "I have a query respect my plant",
                                 }),
@@ -210,11 +210,11 @@ class _SpecialistDetailViewState extends State<SpecialistDetailView> {
                     children: [
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 16.0),
-                        child: Text('${specialist.info_favorite_plants}', style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w300
-                        ),),
+                        //child: Text('${specialist.info_favorite_plants}', style: TextStyle(
+                        //    color: Colors.white,
+                        //    fontSize: 18,
+                        //    fontWeight: FontWeight.w300
+                        //),),
                       ),
                     ],
                   ),
@@ -232,11 +232,11 @@ class _SpecialistDetailViewState extends State<SpecialistDetailView> {
                     children: [
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 16.0),
-                        child: Text('${specialist.info_certifications}', style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: FontWeight.w300
-                        ),),
+                        //child: Text('${specialist.info_certifications}', style: TextStyle(
+                        //    color: Colors.white,
+                        //    fontSize: 20,
+                        //    fontWeight: FontWeight.w300
+                        //),),
                       ),
                     ],
                   ),
@@ -254,11 +254,11 @@ class _SpecialistDetailViewState extends State<SpecialistDetailView> {
                     children: [
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 16.0),
-                        child: Text('${specialist.info_experience}', style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: FontWeight.w300
-                        ),),
+                        //child: Text('${specialist.info_experience}', style: TextStyle(
+                        //    color: Colors.white,
+                        //    fontSize: 20,
+                        //    fontWeight: FontWeight.w300
+                        //),),
                       ),
                     ],
                   ),
