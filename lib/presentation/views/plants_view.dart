@@ -17,14 +17,14 @@ class _PlantsViewState extends State<PlantsView> {
   Future<String> obtenerSaludo() async {
     var horaActual = DateTime.now().hour;
     String saludo;
-    //SharedPreferences prefs = await SharedPreferences.getInstance();
-    //String name = prefs.getString('name')?? "Invitado";
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String name = prefs.getString('name')?? "Invitado";
     if(horaActual >= 0 && horaActual < 12){
-      saludo = "Good Morning";
+      saludo = "Good Morning $name";
     } else if(horaActual >=12 && horaActual < 18){
-      saludo = "Good Afternoon";
+      saludo = "Good Afternoon $name";
     } else {
-      saludo = "Good Night";
+      saludo = "Good Night $name";
     }
     return saludo;
   }
@@ -172,7 +172,7 @@ class _PlantsViewState extends State<PlantsView> {
                                               borderRadius: BorderRadius
                                                   .circular(15),
                                               child: Image.network(
-                                                '${plant.image}',
+                                                '${plant.imageUrl}',
                                                 width: double.infinity,
                                                 height: 200,
                                                 fit: BoxFit.cover,)

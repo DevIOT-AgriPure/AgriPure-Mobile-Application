@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:agripure_mobile/presentation/screens/home_screen.dart';
+import 'package:agripure_mobile/presentation/screens/home_screen_specialist.dart';
 import 'package:agripure_mobile/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -18,9 +19,12 @@ class _LoginViewState extends State<LoginView> {
   TextEditingController _passwordController = TextEditingController();
   bool _isLoading = false;
   bool remember = false;
+  Future<SharedPreferences>? _prefs;
+  String? type = "";
 
-  void InitializeVar() async{
+  Future InitializeVar() async{
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    type = prefs.getString('type');
     String user = prefs.getString("user")??"";
     String pass = prefs.getString("pass")??"";
     setState(() {
@@ -28,10 +32,29 @@ class _LoginViewState extends State<LoginView> {
     });
     _usernameController.text = user;
     _passwordController.text = pass;
+    print(type);
+    if (type != null) {
+      navigateToHomeScreen();
+    }
+  }
+
+  void navigateToHomeScreen() {
+    if (type == "FARMER") {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const HomeScreen(index: 0)),
+      );
+    } else if (type == "SPECIALIST") {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const HomeScreenSpecialist(index: 0)),
+      );
+    }
   }
 
   @override
   void initState() {
+    _prefs = SharedPreferences.getInstance();
     InitializeVar();
     super.initState();
   }
@@ -142,14 +165,12 @@ class _LoginViewState extends State<LoginView> {
                     Expanded(
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(backgroundColor: const Color.fromRGBO(47, 152, 48, 1.0)),
-                          onPressed: () {
+                          onPressed: () async{
                             setState(() {
                               _isLoading = true;
-                            });
-
+                            });        
                             AuthService.logIn(_usernameController.text, _passwordController.text).then((_) =>{
-                              Navigator.pushReplacement(context,
-                                  MaterialPageRoute(builder: (context) => const HomeScreen(index: 0,))),
+                              InitializeVar()
                             }).catchError((error){
                               String errorMessage = "Ocurrió un error durante el inicio de sesión";
                               errorMessage = error.toString();
@@ -166,6 +187,8 @@ class _LoginViewState extends State<LoginView> {
                                 _isLoading = false;
                               });
                             });
+                            
+                            
                           },
                           child: _isLoading
                               ? Container(
@@ -188,5 +211,7 @@ class _LoginViewState extends State<LoginView> {
           )
         ),
     );
+    
   }
+  
 }
