@@ -86,7 +86,7 @@ class _SpecialistViewState extends State<SpecialistView> {
               height: 15,
             ),
             FutureBuilder(
-              future: SpecialistService.getAllSpecialists(),
+              //future: SpecialistService.getAllSpecialists(),
               builder: (context, AsyncSnapshot<List<Specialist2>> snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return CircularProgressIndicator(); // Show a loading indicator while fetching data
@@ -121,6 +121,20 @@ class _SpecialistViewState extends State<SpecialistView> {
                               padding: const EdgeInsets.all(12.0),
                               child: Column(
                                 children: [
+                                  ClipRRect(
+                                            borderRadius: BorderRadius.circular(
+                                                15),
+                                            child: Image.network(
+                                              '${specialist.imageUrl}',
+                                              width: double.infinity,
+                                              height: 200,
+                                              fit: BoxFit.cover,)
+                                        ),
+
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        
                                   Text(
                                     "${specialist.name}",
                                     style: TextStyle(

@@ -7,7 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class SpecialistService {
   static Future<List<Specialist2>> getAllSpecialists() async {
-    var url = Uri.parse('http://nifty-jet-404014.rj.r.appspot.com/api/v1/specialists');
+    var url = Uri.parse('http://nifty-jet-404014.rj.r.appspot.com/api/v1/profiles/getSpecialists');
     Map<String, String> headers = {
       "Accept": "application/json",
       "Content-Type": "application/json",
