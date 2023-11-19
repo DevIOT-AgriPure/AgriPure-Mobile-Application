@@ -1,6 +1,5 @@
 
 
-import 'package:agripure_mobile/presentation/views/specialist_detail_view.dart';
 import 'package:agripure_mobile/services/specialist_service.dart';
 import 'package:flutter/material.dart';
 
@@ -126,14 +125,14 @@ class _SpecialistViewState extends State<SpecialistView> {
                                       Expanded(
                                         child: ElevatedButton(
                                           onPressed: () {
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    SpecialistDetailView(
-                                                        specialist: specialist),
-                                              ),
-                                            );
+                                            //Navigator.push(
+                                            //  context,
+                                            //  MaterialPageRoute(
+                                            //    builder: (context) =>
+                                            //        SpecialistDetailView(
+                                            //            specialist: specialist),
+                                            //  ),
+                                            //);
                                           },
                                           style: ElevatedButton.styleFrom(
                                             backgroundColor:
