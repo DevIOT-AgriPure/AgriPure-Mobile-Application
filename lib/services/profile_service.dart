@@ -21,6 +21,8 @@ class ProfileService {
       throw Exception('Failed to load profile');
     }
   }
+
+  
   
   Future<void> updateData(ProfileActualizar updatedProfile) async {
   final SharedPreferences prefs = await SharedPreferences.getInstance();
