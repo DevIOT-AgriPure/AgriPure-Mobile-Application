@@ -1,5 +1,9 @@
 import 'dart:convert';
+import 'package:agripure_mobile/models/profile_model.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../models/contact_model.dart';
 
 class ContactService {
   final String baseUrl = "http://nifty-jet-404014.rj.r.appspot.com/api/v1/contacts";
@@ -8,7 +12,7 @@ class ContactService {
     await http.put(Uri.parse("$baseUrl/startChatForContact/$id"));
   }
 
-  Future<List<dynamic>> getContactsForFarmer(String token, int id) async {
+  Future<List<dynamic>> getContactsForFarmer(int id) async {
     final response = await http.get(Uri.parse("$baseUrl/contactByFarmerId/$id"));
     if (response.statusCode == 200) {
       return json.decode(response.body);
@@ -16,42 +20,76 @@ class ContactService {
       throw Exception('Failed to load contacts for farmer');
     }
   }
+  
+  static Future<List<Profile>> getSpecialistIdsForFarmer(int id) async {
+  final response = await http.get(Uri.parse("http://nifty-jet-404014.rj.r.appspot.com/api/v1/contacts/contactByFarmerId/$id"));
+  if (response.statusCode == 200) {
+    final notification = json.decode(response.body).cast<Map<String, dynamic>>();
+    return notification.map<Profile>((json) => Profile.fromJson(json)).toList();
+  } else {
+    throw Exception('Failed to load contacts for farmer');
+  }
+}
 
-  Future<List<dynamic>> getContactsForSpecialist(int id) async {
-    final response = await http.get(Uri.parse("$baseUrl/contactBySpecialistId/$id"));
-    if (response.statusCode == 200) {
-      return json.decode(response.body);
-    } else {
-      throw Exception('Failed to load contacts for specialist');
+  static Future<Map<String, dynamic>> getUserById(int id) async{
+    var url = Uri.parse('http://nifty-jet-404014.rj.r.appspot.com/api/v1/profiles/getProfile/$id');
+    try {
+      final response = await http.get(url);
+      if (response.statusCode == 200) {
+        return json.decode(response.body);
+      } else {
+        throw Exception('Error de solicitud: ${response.statusCode}');
+      }
+    } catch (error) {
+      throw Exception('Error de red: $error');
     }
   }
 
-  Future<Map<String, dynamic>> getContactById(int id) async {
-    final response = await http.get(Uri.parse("$baseUrl/contactById/$id"));
-    if (response.statusCode == 200) {
-      return json.decode(response.body);
-    } else {
-      throw Exception('Failed to load contact by id');
+ static Future<List<Contact>> getContactsFarmerById() async {
+  //Guardas todos los especialistas en una lista
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  final farmerId = prefs.getInt('accountId');
+  final response = await http.get(
+    Uri.parse('http://nifty-jet-404014.rj.r.appspot.com/api/v1/contacts/contactByFarmerId/$farmerId'),
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    },
+  );
+
+  if (response.statusCode == 200) {
+    final List<dynamic> jsonList = json.decode(response.body);
+    return jsonList.map((json) => Contact.fromJson(json)).toList();
+  } else {
+    throw Exception('Failed to load contacts');
+  }
+}
+
+  static Future<List<Profile>> getDataBySpecialistId(List<Contact> contacts) async {
+  try {
+    final List<Profile> profiles = [];
+
+    for (var contact in contacts) {
+      final response = await http.get(
+        Uri.parse('http://nifty-jet-404014.rj.r.appspot.com/api/v1/profiles/getProfile/${contact.specialistId}'),
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+      );
+
+      if (response.statusCode == 200) {
+        profiles.add(Profile.fromJson(json.decode(response.body)));
+      } else {
+        throw Exception('Failed to load profile for specialistId: ${contact.specialistId}');
+      }
     }
-  }
 
-  Future<void> deleteContactById(int id) async {
-    await http.delete(Uri.parse("$baseUrl/deleteContactById/$id"));
+    return profiles;
+  } catch (e) {
+    throw Exception('Error: $e');
   }
+}
 
-  Future<void> addContact(int farmerId, int specialistId) async {
-    final response = await http.post(
-      Uri.parse(baseUrl),
-      headers: {"Content-type": "application/json"},
-      body: jsonEncode({
-        "farmerId": farmerId,
-        "specialistId": specialistId,
-        "isChatStarted": false,
-      }),
-    );
-
-    if (response.statusCode != 201) {
-      throw Exception('Failed to add contact');
-    }
-  }
+  
 }
