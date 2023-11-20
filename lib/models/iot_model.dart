@@ -65,3 +65,20 @@ class IoTDevice {
     };
   }
 }
+
+class IoTDeviceInformation{
+  final double planTemperature;
+  final double planHumidity;
+
+  IoTDeviceInformation.fromJson(Map<String, dynamic> json)
+  :
+      planTemperature= json['planTemperature'].toDouble(),
+      planHumidity= json['planHumidity'].toDouble();
+
+  Map<String, dynamic> toJson() {
+    return {
+      'planTemperature': planTemperature,
+      'planHumidity': planHumidity,
+    };
+  }
+}
