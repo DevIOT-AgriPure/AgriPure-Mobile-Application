@@ -1,8 +1,12 @@
+import 'package:agripure_mobile/models/profile_model.dart';
 import 'package:agripure_mobile/presentation/views/add_specialist_view.dart';
+import 'package:agripure_mobile/services/profile_service.dart';
 import 'package:agripure_mobile/services/specialist_service.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../models/specialist_model2.dart';
+import '../../services/contact_service.dart';
 
 class SpecialistView extends StatefulWidget {
   const SpecialistView({Key? key}) : super(key: key);
@@ -12,6 +16,13 @@ class SpecialistView extends StatefulWidget {
 }
 
 class _SpecialistViewState extends State<SpecialistView> {
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,6 +34,7 @@ class _SpecialistViewState extends State<SpecialistView> {
 
             if(response == true) {
               setState(() {});
+              
             }
           },
           child: Icon(Icons.add, color: Colors.white),
@@ -85,31 +97,37 @@ class _SpecialistViewState extends State<SpecialistView> {
             SizedBox(
               height: 15,
             ),
-            FutureBuilder(
-              //future: SpecialistService.getAllSpecialists(),
-              builder: (context, AsyncSnapshot<List<Specialist2>> snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return CircularProgressIndicator(); // Show a loading indicator while fetching data
-                } else if (snapshot.hasError) {
-                  return Text('Error: ${snapshot.error}');
-                } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                  return Center(
-                    child: Text(
-                      'No specialists available.',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
+            FutureBuilder<List<Profile>>(
+            future: ContactService.getContactsFarmerById().then((contacts) => ContactService.getDataBySpecialistId(contacts)),
+            builder: (context, AsyncSnapshot<List<Profile>> snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return CircularProgressIndicator();
+              } else if (snapshot.hasError) {
+                return Text('Error: ${snapshot.error}');
+              } else {
+                List<Profile> profiles = snapshot.data ?? [];
+
+                if (profiles.isEmpty) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Center(
+                      child: Text(
+                        "No plants selected",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   );
                 } else {
                   return Expanded(
                     child: ListView.builder(
-                      itemCount: snapshot.data!.length,
+                      itemCount: profiles.length,
                       itemBuilder: (context, index) {
-                        var specialist = snapshot.data![index];
-
+                        var profile = profiles[index];
+          
                         return Padding(
                           padding: const EdgeInsets.all(20.0),
                           child: Container(
@@ -122,61 +140,66 @@ class _SpecialistViewState extends State<SpecialistView> {
                               child: Column(
                                 children: [
                                   ClipRRect(
-                                            borderRadius: BorderRadius.circular(
-                                                15),
-                                            child: Image.network(
-                                              '${specialist.imageUrl}',
-                                              width: double.infinity,
-                                              height: 200,
-                                              fit: BoxFit.cover,)
-                                        ),
-
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                        
-                                  Text(
-                                    "${specialist.name}",
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 28,
-                                        fontWeight: FontWeight.bold),
+                                      borderRadius: BorderRadius
+                                          .circular(15),
+                                      child: Image.network(
+                                        '${profile.imageUrl}',
+                                        width: double.infinity,
+                                        height: 200,
+                                        fit: BoxFit.cover,)
                                   ),
+          
                                   SizedBox(
                                     height: 10,
                                   ),
+          
+                                  Text(
+                                    "${profile.name}",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 28,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+          
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+          
                                   Row(
                                     children: [
                                       Expanded(
                                         child: ElevatedButton(
-                                          onPressed: () {
-                                            //Navigator.push(
+                                          onPressed: () async {
+                                            //var response = await Navigator.push(
                                             //  context,
                                             //  MaterialPageRoute(
-                                            //    builder: (context) =>
-                                            //        SpecialistDetailView(
-                                            //            specialist: specialist),
+                                            //    builder: (context) => PlantDetailView(profile: profile),
                                             //  ),
                                             //);
+          
+                                            //if (response == true) {
+                                            //  setState(() {});
+                                            //}
                                           },
                                           style: ElevatedButton.styleFrom(
-                                            backgroundColor:
-                                            Colors.orange, // Establecer el fondo anaranjado
+                                            backgroundColor: Colors.orange,
                                           ),
                                           child: Padding(
                                             padding: const EdgeInsets.all(12.0),
                                             child: Text(
                                               "Details",
                                               style: TextStyle(
-                                                  fontSize: 18,
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.bold),
+                                                fontSize: 18,
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.bold,
+                                              ),
                                             ),
                                           ),
                                         ),
                                       ),
                                     ],
-                                  )
+                                  ),
                                 ],
                               ),
                             ),
@@ -184,10 +207,11 @@ class _SpecialistViewState extends State<SpecialistView> {
                         );
                       },
                     ),
-                  );
-                }
-              },
-            )
+        );
+      }
+    }
+  },
+)
           ],
         ),
       ),
