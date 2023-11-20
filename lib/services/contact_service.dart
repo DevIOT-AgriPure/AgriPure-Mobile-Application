@@ -45,8 +45,28 @@ class ContactService {
     }
   }
 
- static Future<List<Contact>> getContactsFarmerById() async {
+  static Future<List<Contact>> getContactsBySpecialistId() async {
   //Guardas todos los especialistas en una lista
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  final specialistId = prefs.getInt('accountId');
+  final response = await http.get(
+    Uri.parse('http://nifty-jet-404014.rj.r.appspot.com/api/v1/contacts/contactBySpecialistId/$specialistId'),
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    },
+  );
+
+  if (response.statusCode == 200) {
+    final List<dynamic> jsonList = json.decode(response.body);
+    return jsonList.map((json) => Contact.fromJson(json)).toList();
+  } else {
+    throw Exception('Failed to load contacts');
+  }
+}
+
+
+ static Future<List<Contact>> getContactsFarmerById() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   final farmerId = prefs.getInt('accountId');
   final response = await http.get(
@@ -82,6 +102,31 @@ class ContactService {
         profiles.add(Profile.fromJson(json.decode(response.body)));
       } else {
         throw Exception('Failed to load profile for specialistId: ${contact.specialistId}');
+      }
+    }
+
+    return profiles;
+  } catch (e) {
+    throw Exception('Error: $e');
+  }
+}
+static Future<List<Profile>> getDataByFarmerId(List<Contact> contacts) async {
+  try {
+    final List<Profile> profiles = [];
+
+    for (var contact in contacts) {
+      final response = await http.get(
+        Uri.parse('http://nifty-jet-404014.rj.r.appspot.com/api/v1/profiles/getProfile/${contact.farmerId}'),
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+      );
+
+      if (response.statusCode == 200) {
+        profiles.add(Profile.fromJson(json.decode(response.body)));
+      } else {
+        throw Exception('Failed to load profile for specialistId: ${contact.farmerId}');
       }
     }
 
