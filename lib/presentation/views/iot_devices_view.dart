@@ -1,10 +1,15 @@
+import 'dart:async';
+
 import 'package:agripure_mobile/presentation/views/device_catalog_view.dart';
 import 'package:agripure_mobile/presentation/views/profile_view.dart';
+import 'package:agripure_mobile/services/device_service.dart';
 import 'package:agripure_mobile/services/profile_service.dart';
 import 'package:flutter/material.dart';
 import 'package:agripure_mobile/services/settings_service.dart';
 import 'package:agripure_mobile/services/auth_service.dart';
 
+import '../../models/iot_model.dart';
+import '../../services/iot_service.dart';
 import '../../services/specialist_service.dart';
 
 class IoTDevicesView extends StatefulWidget {
@@ -16,6 +21,43 @@ class IoTDevicesView extends StatefulWidget {
 
 class _IoTDevicesView extends State<IoTDevicesView> {
   bool isExpanded = false;
+  late Timer _timer; // Nuevo
+  late Future<List<IoTDevice>> _devicesFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    // Iniciar el temporizador para actualizar cada 10 segundos
+    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+     
+      _refreshData();
+    });
+    
+    _devicesFuture = _loadDevicesData();
+
+
+  }
+
+  Future<List<IoTDevice>> _loadDevicesData() async {
+    try {
+      return await IoTService.getDeviceByFarmerId();
+    } catch (e) {
+      print('Error al cargar los datos: $e');
+      throw e; // Lanza la excepción para que sea manejada por el FutureBuilder
+    }
+  }
+  // Función para actualizar los datos
+  Future<void> _refreshData() async {
+    try {
+      
+      setState(() {
+        _devicesFuture = _loadDevicesData();
+
+      });
+    } catch (e) {
+      print('Error al actualizar los datos: $e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -96,14 +138,14 @@ class _IoTDevicesView extends State<IoTDevicesView> {
 
               FutureBuilder(
                   initialData: [],
-                  //future:  SpecilistService.getSpecilist(),
+                  future:  _devicesFuture,
                   builder: (context, AsyncSnapshot<List> snapshot){
                     return Expanded(
                       child: ListView.builder(
                           itemCount: snapshot.data!.length + 1,
                           itemBuilder: (context, index) {
                             if (index < snapshot.data!.length) {
-                              var specialist = snapshot.data![index];
+                              var device = snapshot.data![index];
 
                               return Padding(
                                 padding: const EdgeInsets.all(20.0),
@@ -116,27 +158,53 @@ class _IoTDevicesView extends State<IoTDevicesView> {
                                       padding: const EdgeInsets.all(12.0),
                                       child: Column(
                                         children: [
-                                          /*ClipRRect(
-                                              borderRadius: BorderRadius.circular(15),
-                                              child: Image.network('${specialist.image}',
-                                                width: double.infinity,
-                                                height: 200,
-                                                fit: BoxFit.cover,)
-                                          ),
+                                          //ClipRRect(
+                                          //    borderRadius: BorderRadius.circular(15),
+                                          //    child: Image.network('${device.imageUrl}',
+                                          //      width: double.infinity,
+                                          //      height: 200,
+                                          //      fit: BoxFit.cover,)
+                                          //),
 
                                           SizedBox(
                                             height:  10,
-                                          ),*/
+                                          ),
 
-                                          Text("${specialist.name}", style: TextStyle(
+                                          Text("${device.name}", style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 28,
                                               fontWeight: FontWeight.bold
                                           ),),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+
+                                          Text("Crop: ${device.cropName}", style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold
+                                          ),),
+
 
                                           SizedBox(
                                             height: 10,
                                           ),
+
+                                          Text("Temperature ${device.planTemperature}", style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold
+                                          ),),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+
+                                          Text("Humidity ${device.planHumidity}", style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold
+                                          ),),
+
 
                                           Row(
                                             children: [

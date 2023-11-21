@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
     //    initialScreen = const AuthScreen();
     //  }
     //} else {
-    //  initialScreen = const AuthScreen();
+    //  initialScreen = const AuthSc  reen();
     //}
 
     return MaterialApp(
