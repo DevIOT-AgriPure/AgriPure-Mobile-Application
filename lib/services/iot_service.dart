@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 
 class IoTService{
 
-  static Future<List<IoTDevice>> getDeviceByFarmerId(int farmerId) async{
+  static Future<List<IoTDevice>> getDeviceByFarmerId() async{
       SharedPreferences prefs = await SharedPreferences.getInstance();
       final farmerId = prefs.getInt('accountId');
       final response = await http.get(
@@ -30,7 +30,7 @@ class IoTService{
     SharedPreferences prefs = await SharedPreferences.getInstance();
     final farmerId = prefs.getInt('accountId');
     final List<IoTDeviceInformation> deviceInformationList = [];
-    final List<IoTDevice> devices = await getDeviceByFarmerId(farmerId!);
+    final List<IoTDevice> devices = await getDeviceByFarmerId();
 
 
     for (var device in devices) {
