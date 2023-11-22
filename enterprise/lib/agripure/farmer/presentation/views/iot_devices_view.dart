@@ -1,7 +1,7 @@
 import 'dart:async';
+import 'package:agripure_mobile/agripure/farmer/infraestructure/models/iot_model.dart';
+import 'package:agripure_mobile/agripure/farmer/infraestructure/repositories/iot_service.dart';
 import 'package:flutter/material.dart';
-import '../../infraestructure/models/iot_model.dart';
-import '../../infraestructure/repositories/iot_service.dart';
 import 'device_catalog_view.dart';
 
 class IoTDevicesView extends StatefulWidget {

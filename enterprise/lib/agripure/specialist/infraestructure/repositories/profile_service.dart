@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:agripure_mobile/agripure/farmer/infraestructure/models/profile_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../farmer/infraestructure/models/profile_model.dart';
 
 class ProfileService {
   final String profile_url = 'http://nifty-jet-404014.rj.r.appspot.com/api/v1/profiles/getProfile';

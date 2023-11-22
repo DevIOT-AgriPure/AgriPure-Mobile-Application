@@ -1,8 +1,9 @@
 import 'dart:convert';
+import 'package:agripure_mobile/agripure/specialist/infraestructure/models/specialist_model2.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../models/specialist_model2.dart';
+
 
 
 class SpecialistService {

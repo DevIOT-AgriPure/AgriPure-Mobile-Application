@@ -1,13 +1,11 @@
 import 'dart:convert';
+import 'package:agripure_mobile/agripure/farmer/infraestructure/models/plant_model2.dart';
+import 'package:agripure_mobile/agripure/farmer/infraestructure/repositories/plant_service.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../infraestructure/models/plant_model.dart';
-import '../../../specialist/infraestructure/models/event_model.dart';
-import '../../infraestructure/models/plant_model2.dart';
-import '../../infraestructure/repositories/plant_service.dart';
 import '../screens/home_screen.dart';
 
 class PlantDetailView extends StatefulWidget {

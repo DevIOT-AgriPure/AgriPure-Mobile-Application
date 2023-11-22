@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'dart:typed_data';
+import 'package:agripure_mobile/agripure/farmer/infraestructure/models/plant_result.dart';
+import 'package:agripure_mobile/agripure/farmer/infraestructure/repositories/identify_service.dart';
 import 'package:url_launcher/url_launcher.dart';
-import '../../infraestructure/models/plant_result.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../../infraestructure/repositories/identify_service.dart';
 
 class IdentificationView extends StatefulWidget {
   const IdentificationView({Key? key}) : super(key: key);

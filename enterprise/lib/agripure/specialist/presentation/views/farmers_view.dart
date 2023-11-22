@@ -1,8 +1,8 @@
 
+import 'package:agripure_mobile/agripure/farmer/infraestructure/models/profile_model.dart';
+import 'package:agripure_mobile/agripure/farmer/infraestructure/repositories/contact_service.dart';
 import 'package:flutter/material.dart';
 
-import '../../../farmer/infraestructure/models/profile_model.dart';
-import '../../../farmer/infraestructure/repositories/contact_service.dart';
 
 class FarmersView extends StatefulWidget {
   const FarmersView({Key? key}) : super(key: key);

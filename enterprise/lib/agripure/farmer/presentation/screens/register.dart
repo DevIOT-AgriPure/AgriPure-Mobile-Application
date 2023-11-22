@@ -1,8 +1,8 @@
 
+import 'package:agripure_mobile/agripure/farmer/presentation/views/signin_farmer.dart';
+import 'package:agripure_mobile/agripure/specialist/presentation/views/signin_specialist.dart';
 import 'package:flutter/material.dart';
 
-import '../views/signin_farmer.dart';
-import '../../../specialist/presentation/views/signin_specialist.dart';
 
 class RegisterView extends StatelessWidget {
   const RegisterView({super.key});

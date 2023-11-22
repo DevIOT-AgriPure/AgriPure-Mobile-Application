@@ -1,10 +1,11 @@
 
+import 'package:agripure_mobile/agripure/farmer/presentation/views/profile_view.dart';
+import 'package:agripure_mobile/agripure/specialist/infraestructure/repositories/auth_service.dart';
+import 'package:agripure_mobile/agripure/specialist/infraestructure/repositories/settings_service.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../farmer/presentation/views/profile_view.dart';
-import '../../infraestructure/repositories/auth_service.dart';
-import '../../infraestructure/repositories/settings_service.dart';
+
 
 class SettingsView extends StatefulWidget {
   const SettingsView({Key? key}) : super(key: key);

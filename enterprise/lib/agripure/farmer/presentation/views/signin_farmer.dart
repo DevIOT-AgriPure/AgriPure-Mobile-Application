@@ -1,8 +1,8 @@
+import 'package:agripure_mobile/agripure/specialist/infraestructure/repositories/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-import '../../../specialist/infraestructure/repositories/auth_service.dart';
-import '../screens/auth_screen.dart';
+
 
 class SignInFarmer extends StatefulWidget {
   const SignInFarmer({super.key});

@@ -1,9 +1,9 @@
 
+import 'package:agripure_mobile/agripure/specialist/infraestructure/models/notification_model.dart';
+import 'package:agripure_mobile/agripure/specialist/infraestructure/repositories/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../infraestructure/models/notification_model.dart';
-import '../../infraestructure/repositories/auth_service.dart';
 class NotificationsView extends StatefulWidget {
   const NotificationsView({Key? key}) : super(key: key);
 

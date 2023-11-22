@@ -1,15 +1,12 @@
 
+import 'package:agripure_mobile/agripure/farmer/presentation/views/project_view.dart';
+import 'package:agripure_mobile/agripure/specialist/presentation/views/farmers_view.dart';
+import 'package:agripure_mobile/agripure/specialist/presentation/views/notifications_view.dart';
+import 'package:agripure_mobile/agripure/specialist/presentation/views/settings_view.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../views/farmers_view.dart';
-import '../../../farmer/presentation/screens/identification_view.dart';
-import '../../../farmer/presentation/views/iot_devices_view.dart';
-import '../views/notifications_view.dart';
-import '../../../farmer/presentation/views/plants_view.dart';
-import '../../../farmer/presentation/views/project_view.dart';
-import '../views/settings_view.dart';
-import '../../../farmer/presentation/views/specialist_view.dart';
+
 
 class HomeScreenSpecialist extends StatefulWidget {
   final int index;

@@ -1,10 +1,9 @@
 
+import 'package:agripure_mobile/agripure/farmer/infraestructure/models/profile_model.dart';
+import 'package:agripure_mobile/agripure/farmer/infraestructure/repositories/contact_service.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../infraestructure/models/profile_model.dart';
-import '../../../specialist/infraestructure/models/specialist_model2.dart';
-import '../../infraestructure/repositories/contact_service.dart';
 import 'add_specialist_view.dart';
 
 class SpecialistView extends StatefulWidget {

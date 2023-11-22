@@ -1,8 +1,8 @@
 
+import 'package:agripure_mobile/agripure/farmer/infraestructure/repositories/plant_service.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../infraestructure/repositories/plant_service.dart';
 import 'add_plant_view.dart';
 import 'plant_detail_view.dart';
 

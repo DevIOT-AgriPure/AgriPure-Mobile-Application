@@ -1,8 +1,8 @@
 
+import 'package:agripure_mobile/agripure/specialist/infraestructure/repositories/specialist_service.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-import '../../../specialist/infraestructure/repositories/specialist_service.dart';
 
 class AddSpecialistView extends StatefulWidget {
   const AddSpecialistView({super.key});

@@ -1,8 +1,8 @@
 
+import 'package:agripure_mobile/agripure/specialist/infraestructure/repositories/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-import '../../infraestructure/repositories/auth_service.dart';
 
 
 class SignInSpecialist extends StatefulWidget {

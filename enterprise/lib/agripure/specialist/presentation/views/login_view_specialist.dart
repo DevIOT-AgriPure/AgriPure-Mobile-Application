@@ -1,11 +1,11 @@
 import 'dart:async';
+import 'package:agripure_mobile/agripure/farmer/presentation/screens/home_screen.dart';
+import 'package:agripure_mobile/agripure/specialist/infraestructure/repositories/auth_service.dart';
+import 'package:agripure_mobile/agripure/specialist/presentation/screens/home_screen_specialist.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../farmer/presentation/screens/home_screen.dart';
-import '../../infraestructure/repositories/auth_service.dart';
-import '../screens/home_screen_specialist.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
