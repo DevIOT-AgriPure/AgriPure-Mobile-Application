@@ -28,8 +28,6 @@ class IoTService{
 
   static Future<List<IoTDeviceInformation>> getInformationByDeviceId() async{
     try {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    final farmerId = prefs.getInt('accountId');
     final List<IoTDeviceInformation> deviceInformationList = [];
     final List<IoTDevice> devices = await getDeviceByFarmerId();
 

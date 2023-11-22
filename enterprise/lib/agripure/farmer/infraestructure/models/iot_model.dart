@@ -1,17 +1,17 @@
 class IoTDevice {
-  final int id;
-  final String name;
-  final String model;
-  final String category;
-  final String cropName;
-  final int farmerId;
-  final int projectId;
-  final bool active;
+  final int? id;
+  final String? name;
+  final String? model;
+  final String? category;
+  final String? cropName;
+  final int? farmerId;
+  final int? projectId;
+  final bool? active;
   final int? cropId;
-  final bool activeNotification;
-  final bool activeRealTimeData;
-  final double planTemperature;
-  final double planHumidity;
+  final bool? activeNotification;
+  final bool? activeRealTimeData;
+  final double? planTemperature;
+  final double? planHumidity;
 
   
   IoTDevice({

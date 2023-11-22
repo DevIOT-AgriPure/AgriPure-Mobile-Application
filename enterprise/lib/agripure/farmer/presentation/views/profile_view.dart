@@ -1,9 +1,9 @@
 
-import 'package:agripure_mobile/catalog/farmer/infraestructure/models/profile_model.dart';
+import 'package:agripure_mobile/agripure/farmer/infraestructure/models/profile_model.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../infraestructure/repositories/profile_service.dart';
+import '../../../specialist/infraestructure/repositories/profile_service.dart';
 class ProfileView extends StatefulWidget {
   const ProfileView({super.key});
 
