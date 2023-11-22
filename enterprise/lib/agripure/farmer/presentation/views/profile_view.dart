@@ -90,7 +90,7 @@ class _ProfileViewState extends State<ProfileView> {
               Align(
                 alignment: Alignment.center,
                 child: FutureBuilder(
-                  future: profileService?.getData(4),
+                  future: profileService?.getData(userId!),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       // Muestra una imagen de carga mientras se espera la respuesta del backend
