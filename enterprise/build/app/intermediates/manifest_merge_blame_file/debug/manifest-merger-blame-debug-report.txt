@@ -1,0 +1,212 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.agripure.agripure_mobile"
+4    android:versionCode="1"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="16"
+9        android:targetSdkVersion="33" />
+10    <!--
+11         The INTERNET permission is required for development. Specifically,
+12         the Flutter tool needs it to communicate with the running application
+13         to allow setting breakpoints, to provide hot reload, etc.
+14    -->
+15    <uses-permission android:name="android.permission.INTERNET" />
+15-->/Users/frank/Documents/GitHub/AgriPure-Mobile-Application/enterprise/android/app/src/main/AndroidManifest.xml:3:5-66
+15-->/Users/frank/Documents/GitHub/AgriPure-Mobile-Application/enterprise/android/app/src/main/AndroidManifest.xml:3:22-64
+16    <uses-permission android:name="android.permission.CAMERA" />
+16-->/Users/frank/Documents/GitHub/AgriPure-Mobile-Application/enterprise/android/app/src/debug/AndroidManifest.xml:7:5-64
+16-->/Users/frank/Documents/GitHub/AgriPure-Mobile-Application/enterprise/android/app/src/debug/AndroidManifest.xml:7:22-62
+17    <uses-permission android:name="android.permission.CALL_PHONE" />
+17-->/Users/frank/Documents/GitHub/AgriPure-Mobile-Application/enterprise/android/app/src/debug/AndroidManifest.xml:8:5-69
+17-->/Users/frank/Documents/GitHub/AgriPure-Mobile-Application/enterprise/android/app/src/debug/AndroidManifest.xml:8:22-66
+18
+19    <queries>
+19-->/Users/frank/Documents/GitHub/AgriPure-Mobile-Application/enterprise/android/app/src/main/AndroidManifest.xml:36:5-53:15
+20
+21        <!-- If your app opens https URLs -->
+22        <intent>
+22-->/Users/frank/Documents/GitHub/AgriPure-Mobile-Application/enterprise/android/app/src/main/AndroidManifest.xml:38:9-42:18
+23            <action android:name="android.intent.action.VIEW" />
+23-->/Users/frank/Documents/GitHub/AgriPure-Mobile-Application/enterprise/android/app/src/main/AndroidManifest.xml:39:13-65
+23-->/Users/frank/Documents/GitHub/AgriPure-Mobile-Application/enterprise/android/app/src/main/AndroidManifest.xml:39:21-62
+24
+25            <category android:name="android.intent.category.BROWSABLE" />
+25-->/Users/frank/Documents/GitHub/AgriPure-Mobile-Application/enterprise/android/app/src/main/AndroidManifest.xml:40:13-73
+25-->/Users/frank/Documents/GitHub/AgriPure-Mobile-Application/enterprise/android/app/src/main/AndroidManifest.xml:40:23-71
+26
+27            <data android:scheme="https" />
+27-->/Users/frank/Documents/GitHub/AgriPure-Mobile-Application/enterprise/android/app/src/main/AndroidManifest.xml:41:13-44
+27-->/Users/frank/Documents/GitHub/AgriPure-Mobile-Application/enterprise/android/app/src/main/AndroidManifest.xml:41:19-41
+28        </intent>
+29        <!-- If your app makes calls -->
+30        <intent>
+30-->/Users/frank/Documents/GitHub/AgriPure-Mobile-Application/enterprise/android/app/src/main/AndroidManifest.xml:44:9-47:18
+31            <action android:name="android.intent.action.VIEW" />
+31-->/Users/frank/Documents/GitHub/AgriPure-Mobile-Application/enterprise/android/app/src/main/AndroidManifest.xml:39:13-65
+31-->/Users/frank/Documents/GitHub/AgriPure-Mobile-Application/enterprise/android/app/src/main/AndroidManifest.xml:39:21-62
+32
+33            <data android:scheme="tel" />
+33-->/Users/frank/Documents/GitHub/AgriPure-Mobile-Application/enterprise/android/app/src/main/AndroidManifest.xml:41:13-44
+33-->/Users/frank/Documents/GitHub/AgriPure-Mobile-Application/enterprise/android/app/src/main/AndroidManifest.xml:41:19-41
+34        </intent>
+35        <!-- If your app emails -->
+36        <intent>
+36-->/Users/frank/Documents/GitHub/AgriPure-Mobile-Application/enterprise/android/app/src/main/AndroidManifest.xml:49:9-52:18
+37            <action android:name="android.intent.action.SEND" />
+37-->/Users/frank/Documents/GitHub/AgriPure-Mobile-Application/enterprise/android/app/src/main/AndroidManifest.xml:50:13-65
+37-->/Users/frank/Documents/GitHub/AgriPure-Mobile-Application/enterprise/android/app/src/main/AndroidManifest.xml:50:21-62
+38
+39            <data android:mimeType="*/*" />
+39-->/Users/frank/Documents/GitHub/AgriPure-Mobile-Application/enterprise/android/app/src/main/AndroidManifest.xml:41:13-44
+40        </intent>
+41    </queries>
+42
+43    <permission
+43-->[androidx.core:core:1.10.1] /Users/frank/.gradle/caches/transforms-3/c4988ff80110f75080a936fc6f044848/transformed/core-1.10.1/AndroidManifest.xml:22:5-24:47
+44        android:name="com.agripure.agripure_mobile.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+44-->[androidx.core:core:1.10.1] /Users/frank/.gradle/caches/transforms-3/c4988ff80110f75080a936fc6f044848/transformed/core-1.10.1/AndroidManifest.xml:23:9-81
+45        android:protectionLevel="signature" />
+45-->[androidx.core:core:1.10.1] /Users/frank/.gradle/caches/transforms-3/c4988ff80110f75080a936fc6f044848/transformed/core-1.10.1/AndroidManifest.xml:24:9-44
+46
+47    <uses-permission android:name="com.agripure.agripure_mobile.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+47-->[androidx.core:core:1.10.1] /Users/frank/.gradle/caches/transforms-3/c4988ff80110f75080a936fc6f044848/transformed/core-1.10.1/AndroidManifest.xml:26:5-97
+47-->[androidx.core:core:1.10.1] /Users/frank/.gradle/caches/transforms-3/c4988ff80110f75080a936fc6f044848/transformed/core-1.10.1/AndroidManifest.xml:26:22-94
+48
+49    <application
+50        android:name="android.app.Application"
+51        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+51-->[androidx.core:core:1.10.1] /Users/frank/.gradle/caches/transforms-3/c4988ff80110f75080a936fc6f044848/transformed/core-1.10.1/AndroidManifest.xml:28:18-86
+52        android:debuggable="true"
+53        android:icon="@mipmap/logo_agripure"
+54        android:label="AgriPure" >
+55        <activity
+56            android:name="com.agripure.agripure_mobile.MainActivity"
+57            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+58            android:exported="true"
+59            android:hardwareAccelerated="true"
+60            android:launchMode="singleTop"
+61            android:theme="@style/LaunchTheme"
+62            android:windowSoftInputMode="adjustResize" >
+63
+64            <!--
+65                 Specifies an Android theme to apply to this Activity as soon as
+66                 the Android process has started. This theme is visible to the user
+67                 while the Flutter UI initializes. After that, this theme continues
+68                 to determine the Window background behind the Flutter UI.
+69            -->
+70            <meta-data
+71                android:name="io.flutter.embedding.android.NormalTheme"
+72                android:resource="@style/NormalTheme" />
+73
+74            <intent-filter>
+75                <action android:name="android.intent.action.MAIN" />
+76
+77                <category android:name="android.intent.category.LAUNCHER" />
+78            </intent-filter>
+79        </activity>
+80        <!--
+81             Don't delete the meta-data below.
+82             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+83        -->
+84        <meta-data
+85            android:name="flutterEmbedding"
+86            android:value="2" />
+87
+88        <provider
+88-->[:image_picker_android] /Users/frank/Documents/GitHub/AgriPure-Mobile-Application/enterprise/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:10:9-18:20
+89            android:name="io.flutter.plugins.imagepicker.ImagePickerFileProvider"
+89-->[:image_picker_android] /Users/frank/Documents/GitHub/AgriPure-Mobile-Application/enterprise/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-82
+90            android:authorities="com.agripure.agripure_mobile.flutter.image_provider"
+90-->[:image_picker_android] /Users/frank/Documents/GitHub/AgriPure-Mobile-Application/enterprise/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:12:13-74
+91            android:exported="false"
+91-->[:image_picker_android] /Users/frank/Documents/GitHub/AgriPure-Mobile-Application/enterprise/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-37
+92            android:grantUriPermissions="true" >
+92-->[:image_picker_android] /Users/frank/Documents/GitHub/AgriPure-Mobile-Application/enterprise/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:14:13-47
+93            <meta-data
+93-->[:image_picker_android] /Users/frank/Documents/GitHub/AgriPure-Mobile-Application/enterprise/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:15:13-17:75
+94                android:name="android.support.FILE_PROVIDER_PATHS"
+94-->[:image_picker_android] /Users/frank/Documents/GitHub/AgriPure-Mobile-Application/enterprise/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:16:17-67
+95                android:resource="@xml/flutter_image_picker_file_paths" />
+95-->[:image_picker_android] /Users/frank/Documents/GitHub/AgriPure-Mobile-Application/enterprise/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:17:17-72
+96        </provider>
+97
+98        <activity
+98-->[:url_launcher_android] /Users/frank/Documents/GitHub/AgriPure-Mobile-Application/enterprise/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:10:9-13:74
+99            android:name="io.flutter.plugins.urllauncher.WebViewActivity"
+99-->[:url_launcher_android] /Users/frank/Documents/GitHub/AgriPure-Mobile-Application/enterprise/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-74
+100            android:exported="false"
+100-->[:url_launcher_android] /Users/frank/Documents/GitHub/AgriPure-Mobile-Application/enterprise/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:12:13-37
+101            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+101-->[:url_launcher_android] /Users/frank/Documents/GitHub/AgriPure-Mobile-Application/enterprise/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-71
+102
+103        <uses-library
+103-->[androidx.window:window:1.0.0-beta04] /Users/frank/.gradle/caches/transforms-3/25cee5f028ac2a6b79fd6278ff5b59e2/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:25:9-27:40
+104            android:name="androidx.window.extensions"
+104-->[androidx.window:window:1.0.0-beta04] /Users/frank/.gradle/caches/transforms-3/25cee5f028ac2a6b79fd6278ff5b59e2/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:26:13-54
+105            android:required="false" />
+105-->[androidx.window:window:1.0.0-beta04] /Users/frank/.gradle/caches/transforms-3/25cee5f028ac2a6b79fd6278ff5b59e2/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:27:13-37
+106        <uses-library
+106-->[androidx.window:window:1.0.0-beta04] /Users/frank/.gradle/caches/transforms-3/25cee5f028ac2a6b79fd6278ff5b59e2/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:28:9-30:40
+107            android:name="androidx.window.sidecar"
+107-->[androidx.window:window:1.0.0-beta04] /Users/frank/.gradle/caches/transforms-3/25cee5f028ac2a6b79fd6278ff5b59e2/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:29:13-51
+108            android:required="false" />
+108-->[androidx.window:window:1.0.0-beta04] /Users/frank/.gradle/caches/transforms-3/25cee5f028ac2a6b79fd6278ff5b59e2/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:30:13-37
+109
+110        <provider
+110-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/frank/.gradle/caches/transforms-3/635b1770925726da461e843c0a3c6641/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:24:9-32:20
+111            android:name="androidx.startup.InitializationProvider"
+111-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/frank/.gradle/caches/transforms-3/635b1770925726da461e843c0a3c6641/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:25:13-67
+112            android:authorities="com.agripure.agripure_mobile.androidx-startup"
+112-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/frank/.gradle/caches/transforms-3/635b1770925726da461e843c0a3c6641/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:26:13-68
+113            android:exported="false" >
+113-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/frank/.gradle/caches/transforms-3/635b1770925726da461e843c0a3c6641/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:27:13-37
+114            <meta-data
+114-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/frank/.gradle/caches/transforms-3/635b1770925726da461e843c0a3c6641/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:29:13-31:52
+115                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+115-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/frank/.gradle/caches/transforms-3/635b1770925726da461e843c0a3c6641/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:30:17-85
+116                android:value="androidx.startup" />
+116-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/frank/.gradle/caches/transforms-3/635b1770925726da461e843c0a3c6641/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:31:17-49
+117        </provider>
+118
+119        <receiver
+119-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/frank/.gradle/caches/transforms-3/635b1770925726da461e843c0a3c6641/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:34:9-52:20
+120            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+120-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/frank/.gradle/caches/transforms-3/635b1770925726da461e843c0a3c6641/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:35:13-76
+121            android:directBootAware="false"
+121-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/frank/.gradle/caches/transforms-3/635b1770925726da461e843c0a3c6641/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:36:13-44
+122            android:enabled="true"
+122-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/frank/.gradle/caches/transforms-3/635b1770925726da461e843c0a3c6641/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:37:13-35
+123            android:exported="true"
+123-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/frank/.gradle/caches/transforms-3/635b1770925726da461e843c0a3c6641/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:38:13-36
+124            android:permission="android.permission.DUMP" >
+124-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/frank/.gradle/caches/transforms-3/635b1770925726da461e843c0a3c6641/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:39:13-57
+125            <intent-filter>
+125-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/frank/.gradle/caches/transforms-3/635b1770925726da461e843c0a3c6641/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:40:13-42:29
+126                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+126-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/frank/.gradle/caches/transforms-3/635b1770925726da461e843c0a3c6641/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:41:17-91
+126-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/frank/.gradle/caches/transforms-3/635b1770925726da461e843c0a3c6641/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:41:25-88
+127            </intent-filter>
+128            <intent-filter>
+128-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/frank/.gradle/caches/transforms-3/635b1770925726da461e843c0a3c6641/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:43:13-45:29
+129                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+129-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/frank/.gradle/caches/transforms-3/635b1770925726da461e843c0a3c6641/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:44:17-85
+129-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/frank/.gradle/caches/transforms-3/635b1770925726da461e843c0a3c6641/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:44:25-82
+130            </intent-filter>
+131            <intent-filter>
+131-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/frank/.gradle/caches/transforms-3/635b1770925726da461e843c0a3c6641/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:46:13-48:29
+132                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+132-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/frank/.gradle/caches/transforms-3/635b1770925726da461e843c0a3c6641/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:47:17-88
+132-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/frank/.gradle/caches/transforms-3/635b1770925726da461e843c0a3c6641/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:47:25-85
+133            </intent-filter>
+134            <intent-filter>
+134-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/frank/.gradle/caches/transforms-3/635b1770925726da461e843c0a3c6641/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:49:13-51:29
+135                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+135-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/frank/.gradle/caches/transforms-3/635b1770925726da461e843c0a3c6641/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:50:17-95
+135-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/frank/.gradle/caches/transforms-3/635b1770925726da461e843c0a3c6641/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:50:25-92
+136            </intent-filter>
+137        </receiver>
+138    </application>
+139
+140</manifest>
