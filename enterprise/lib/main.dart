@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'presentation/screens/auth_screen.dart';
-import 'presentation/screens/home_screen.dart';
-import 'presentation/screens/home_screen_specialist.dart';
-import 'presentation/screens/splash_screen.dart';
+import 'catalog/farmer/presentation/screens/auth_screen.dart';
+import 'catalog/farmer/presentation/screens/home_screen.dart';
+import 'catalog/specialist/presentation/screens/home_screen_specialist.dart';
+import 'catalog/farmer/presentation/screens/splash_screen.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
