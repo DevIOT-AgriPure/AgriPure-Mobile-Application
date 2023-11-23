@@ -10,7 +10,7 @@ class AuthService{
   static Future<void> registerFarmer(String email, String password, String name, String description, String imageUrl, String location, String type,int plantId) async {
 
     try{
-      var url = Uri.parse('http://nifty-jet-404014.rj.r.appspot.com/auth/registerFarmer');
+      var url = Uri.parse('http://nifty-jet-404014.rj.r.appspot.com/api/v1/auth/registerFarmer');
       Map<String, String> headers = {
         "Accept": "application/json",
         "Content-Type": "application/json",
@@ -47,7 +47,7 @@ class AuthService{
   static Future<void> registerSpecialist(String email, String password, String name, String description, String imageUrl, String location, String type,int plantId, String expertise, String contactEmail, String areasOfFocus) async {
 
     try{
-      var url = Uri.parse('http://nifty-jet-404014.rj.r.appspot.com/auth/registerSpecialist');
+      var url = Uri.parse('http://nifty-jet-404014.rj.r.appspot.com/api/v1/auth/registerSpecialist');
       Map<String, String> headers = {
         "Accept": "application/json",
         "Content-Type": "application/json",
@@ -88,7 +88,7 @@ class AuthService{
   static Future<void> logIn(String email, String password) async {
     
     try {
-      var url = Uri.parse('http://nifty-jet-404014.rj.r.appspot.com/auth/login');
+      var url = Uri.parse('http://nifty-jet-404014.rj.r.appspot.com/api/v1/auth/login');
       Map<String, String> headers = {
         "Accept": "application/json",
         "Content-Type": "application/json",
