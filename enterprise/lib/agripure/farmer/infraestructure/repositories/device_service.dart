@@ -46,7 +46,7 @@ class DeviceService {
 
       final user = jsonDecode(responseUser.body); // retorna el json de la info del farmer
       final userId = user['accountId']; //captura el accountId
-
+      //Http Request
       var urlPlant = Uri.parse('http://nifty-jet-404014.rj.r.appspot.com/api/v1/crops');
 
       var response = await http.post(urlPlant, headers: headers, body: jsonEncode({'farmerId': userId, 'plantId': 1},));
